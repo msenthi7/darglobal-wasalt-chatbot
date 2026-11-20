@@ -33,7 +33,7 @@ from .schemas import ChatRequest, ChatResponse, ErrorBody, ErrorResponse
 
 APP_VERSION = "1.0.0"
 STATIC = Path(__file__).parent / "static"
-MAX_BODY_BYTES = 16 * 1024
+MAX_BODY_BYTES = 32 * 1024
 CSP = ("default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; "
        "font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; "
        "frame-ancestors 'self' https://huggingface.co https://*.hf.space")
@@ -84,7 +84,8 @@ def client_key(request: Request) -> str:
     except ValueError:
         behind_proxy = False
     if behind_proxy:
-        for entry in reversed(request.headers.get("x-forwarded-for", "").split(",")[-10:]):
+        forwarded = ",".join(request.headers.getlist("x-forwarded-for"))  # all header lines, not just the first
+        for entry in reversed(forwarded.split(",")[-10:]):
             candidate = entry.strip().strip("[]")
             try:
                 if ipaddress.ip_address(candidate).is_global:
@@ -92,6 +93,12 @@ def client_key(request: Request) -> str:
                     break
             except ValueError:
                 continue
+    try:
+        addr = ipaddress.ip_address(ip)
+        if addr.version == 6:  # one subscriber usually controls a whole /64
+            ip = str(ipaddress.ip_network(f"{addr}/64", strict=False))
+    except ValueError:
+        pass
     return hashlib.sha256(ip.encode()).hexdigest()[:24]  # raw IPs are never stored or logged
 
 
@@ -145,7 +152,9 @@ def create_app(settings_factory: Callable[[], Settings] = Settings.from_env,
         await registry.refresh(http, settings.openrouter_base_url)
         ctx = Context(settings=settings, docs=docs, index=index, rejected=rejected,
                       meta=build_meta(settings, docs, rejected), http=http, registry=registry,
-                      llm=OpenRouterClient(settings, http, registry, SlidingWindowLimiter(settings.upstream_per_day, 86_400)),
+                      llm=OpenRouterClient(settings, http, registry,
+                                           SlidingWindowLimiter(settings.upstream_per_day, 86_400),
+                                           SlidingWindowLimiter(settings.client_upstream_per_day, 86_400)),
                       client_minute=SlidingWindowLimiter(settings.per_client_per_minute, 60),
                       client_day=SlidingWindowLimiter(settings.per_client_per_day, 86_400),
                       global_minute=SlidingWindowLimiter(settings.global_per_minute, 60))
@@ -269,11 +278,12 @@ def create_app(settings_factory: Callable[[], Settings] = Settings.from_env,
                                 model="none (no matching sources, so no model call was made)", fallback_used=False,
                                 request_id=request_id, latency_ms=int((time.monotonic() - started) * 1000))
         try:
-            result = await ctx.llm.complete(build_messages(body.message, body.history, hits), request_id=request_id)
+            messages, sent = build_messages(body.message, body.history, hits)
+            result = await ctx.llm.complete(messages, request_id=request_id, client=client)
         except LLMError as exc:
             return error_response(exc.http_status, exc.code, exc.message, retryable=exc.retryable, request_id=request_id,
                                   retry_after=exc.retry_after_s)
-        answer, citations, related, grounding = postprocess(result.text, hits)
+        answer, citations, related, grounding = postprocess(result.text, sent)
         latency = int((time.monotonic() - started) * 1000)
         log.info(json.dumps({"event": "chat", "request_id": request_id, "hits": len(hits), "grounding": grounding,
                              "model": result.model, "attempts": result.attempts, "latency_ms": latency}))

@@ -40,6 +40,16 @@ SOURCE_LABEL = {"archive_snapshot": "Internet Archive snapshot", "live_sitemap_d
                 "live_page": "live page", "manual": "saved manually by the candidate"}
 
 
+def defang(text: str) -> str:
+    """Remove <sources> fence tags until none remain: one pass can be re-formed ('</sour</sources>ces>')."""
+    for _ in range(10):
+        cleaned = _FENCE.sub("", text)
+        if cleaned == text:
+            return cleaned
+        text = cleaned
+    return text.replace("<", "\u2039")  # pathological nesting: neutralise any remaining angle brackets
+
+
 def system_prompt(now: datetime | None = None) -> str:
     return SYSTEM_PROMPT.format(today=(now or datetime.now(timezone.utc)).date().isoformat())
 
@@ -53,29 +63,33 @@ def retrieval_query(message: str, history: list[ChatTurn]) -> str:
     return message
 
 
-def build_messages(message: str, history: list[ChatTurn], hits: list[Hit], now: datetime | None = None) -> list[dict]:
+def build_messages(message: str, history: list[ChatTurn], hits: list[Hit],
+                   now: datetime | None = None) -> tuple[list[dict], list[Hit]]:
+    """Return the chat messages and the hits actually sent (citations are validated against those only)."""
     blocks: list[str] = []
+    sent: list[Hit] = []
     used = 0
     for n, hit in enumerate(hits, 1):
         d = hit.chunk.doc
-        header = (f"[{n}] {d.title} | {d.site} | captured {d.captured_at} ({SOURCE_LABEL.get(d.source_type, d.source_type)})"
-                  f" | {d.url}")
-        body = _FENCE.sub("", hit.chunk.text)
+        header = (f"[{n}] {defang(d.title)} | {d.site} | captured {d.captured_at} "
+                  f"({SOURCE_LABEL.get(d.source_type, d.source_type)}) | {defang(d.url)}")
+        body = defang(hit.chunk.text)
         room = MAX_CONTEXT_CHARS - used - len(header)
         if room < 200:
             break
         block = f"{header}\n{body[:room]}"
         blocks.append(block)
+        sent.append(hit)
         used += len(block)
     messages: list[dict] = [{"role": "system", "content": system_prompt(now)}]
     for turn in history[-MAX_HISTORY_TURNS:]:
-        content = _FENCE.sub("", turn.content)
+        content = defang(turn.content)
         if turn.role == "assistant":  # old [n] markers refer to an earlier source list, not this one
             content = _CITE_GROUP.sub("", content)
         messages.append({"role": turn.role, "content": content[:MAX_HISTORY_CHARS]})
     sources = "\n\n".join(blocks) if blocks else "(no matching sources were found)"
-    messages.append({"role": "user", "content": f"<sources>\n{sources}\n</sources>\n\nQuestion: {_FENCE.sub('', message)}"})
-    return messages
+    messages.append({"role": "user", "content": f"<sources>\n{sources}\n</sources>\n\nQuestion: {defang(message)}"})
+    return messages, sent
 
 
 def citation_for(n: int, hit: Hit) -> Citation:

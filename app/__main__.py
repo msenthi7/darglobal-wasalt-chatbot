@@ -15,7 +15,7 @@ def main() -> int:
         return 2
     host = os.environ.get("HOST", "0.0.0.0")  # containers must listen on all interfaces; use 127.0.0.1 locally
     uvicorn.run("app.main:app", host=host, port=int(raw_port), workers=1, proxy_headers=False,
-                server_header=False, date_header=False, log_level="info", timeout_keep_alive=5,
+                server_header=False, date_header=False, access_log=False, log_level="info", timeout_keep_alive=5,
                 limit_concurrency=100)
     return 0
 

@@ -120,7 +120,7 @@ def test_missing_key_is_reported_not_hidden(make_client):
 
 def test_oversized_body_and_unknown_route_are_typed(make_client):
     with make_client(answer()) as client:
-        r = client.post("/api/chat", content=b"{" + b" " * 20_000 + b"}", headers={"content-type": "application/json"})
+        r = client.post("/api/chat", content=b"{" + b" " * 40_000 + b"}", headers={"content-type": "application/json"})
         assert r.status_code == 413 and r.json()["error"]["code"] == "payload_too_large"
         assert client.get("/nope").json()["error"]["code"] == "not_found"
 

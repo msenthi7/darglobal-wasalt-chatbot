@@ -96,6 +96,8 @@ def validate_record(rec: object) -> Document:
         raise ValueError("content hash mismatch")
     if has_high(scan_text(text)):
         raise ValueError("text contains instruction-like content aimed at AI systems")
+    if has_high(scan_text(rec["title"])):
+        raise ValueError("title contains instruction-like content aimed at AI systems")
     return Document(rec["doc_id"], site, rec["url"], rec["title"][:300], rec["lang"], text, rec["source_type"],
                     rec["retrieved_from"][:500], rec["captured_at"])
 
@@ -154,13 +156,23 @@ def chunk_document(doc: Document, target: int = 1100) -> list[Chunk]:
 # -------------------------------------------------------------- tokenising
 _AR_DIACRITICS = re.compile("[ً-ٰٟۖ-ۭـ]")
 _TOKEN = re.compile(r"[a-z0-9]+|[ء-ي]+")
-_STOP = set(
+_AR_NORMAL = str.maketrans({"أ": "ا", "إ": "ا", "آ": "ا", "ة": "ه", "ى": "ي", "ؤ": "و", "ئ": "ي",
+                            **{chr(0x0660 + i): str(i) for i in range(10)},   # Arabic-Indic digits
+                            **{chr(0x06F0 + i): str(i) for i in range(10)}})  # Extended Arabic-Indic digits
+
+
+def normalize(text: str) -> str:
+    text = strip_invisible(text).lower()
+    return _AR_DIACRITICS.sub("", text).translate(_AR_NORMAL)
+
+
+_STOP_RAW = set(
     "a an the and or of to in on at for with by from is are was were be been it its this that these those as "
     "what which who whom whose when where why how do does did can could would should will shall may might "
     "i me my we our you your he she they them their there here about tell show give list please any some "
     "has have had not no yes also than then so if into over under more most much many very just".split()
-) | set("في من على الى إلى عن مع هذا هذه ذلك التي الذي ما هل كم او أو ثم كل".split())
-_AR_NORMAL = str.maketrans({"أ": "ا", "إ": "ا", "آ": "ا", "ة": "ه", "ى": "ي", "ؤ": "و", "ئ": "ي"})
+) | set("في من على الى إلى عن مع هذا هذه ذلك التي الذي ما هل او أو ثم كل".split())
+_STOP = {normalize(w) for w in _STOP_RAW}  # same normalisation as tokens, so "على" (-> "علي") is matched
 SYNONYMS: dict[str, tuple[str, ...]] = {
     "uae": ("dubai", "emirate"), "emirate": ("uae",), "ksa": ("saudi",), "saudi": ("ksa",),
     "price": ("starting", "aed", "sar", "cost", "priced"), "cost": ("price",), "cheap": ("price", "starting"),
@@ -185,7 +197,7 @@ AR_TO_EN: dict[str, str] = {
     "أحياء": "districts", "احياء": "districts", "كم": "inventory total", "عدد": "number inventory total",
 }
 _KEEP_ENDINGS = {"united", "parking", "during", "morning", "evening", "ceiling", "string", "nothing", "something"}
-_COUNT_Q = re.compile(r"\b(?:how many|number of|count|total)\b", re.IGNORECASE)
+_COUNT_Q = re.compile(r"\b(?:how many|number of|count|total|كم|عدد)\b", re.IGNORECASE)
 
 
 def _stem(tok: str) -> str:
@@ -208,11 +220,6 @@ def _stem(tok: str) -> str:
     if tok.startswith(("ال", "بال", "لل")) and len(tok) > 4:
         return tok[3:] if tok.startswith(("بال",)) else tok[2:]
     return tok
-
-
-def normalize(text: str) -> str:
-    text = strip_invisible(text).lower()
-    return _AR_DIACRITICS.sub("", text).translate(_AR_NORMAL)
 
 
 def tokenize(text: str) -> list[str]:

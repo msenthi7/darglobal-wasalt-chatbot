@@ -4,6 +4,8 @@
 (() => {
   const ALLOWED_HOSTS = ['darglobal.co.uk', 'wasalt.sa', 'web.archive.org'];
   const MAX_SEND_TURNS = 6;
+  const MAX_TURN_CHARS = 1200; // the server keeps at most this much of each earlier turn
+  const MAX_HISTORY_BYTES = 12000; // Arabic is ~2 bytes per character in UTF-8
   const state = { history: [], busy: false, seq: 0 };
   const $ = (id) => document.getElementById(id);
   const log = $('log');
@@ -168,6 +170,23 @@
     $('count').textContent = `${input.value.length} / 1000`;
   }
 
+  function historyPayload() {
+    const enc = new TextEncoder();
+    const turns = state.history.slice(-MAX_SEND_TURNS)
+      .map((t) => ({ role: t.role, content: t.content.slice(0, MAX_TURN_CHARS) }));
+    while (turns.length && enc.encode(JSON.stringify(turns)).length > MAX_HISTORY_BYTES) turns.splice(0, 2);
+    return turns;
+  }
+
+  function postChat(message, history, signal) {
+    return fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, history }),
+      signal,
+    });
+  }
+
   async function ask(raw) {
     const text = raw.trim();
     if (!text || state.busy) return;
@@ -180,12 +199,11 @@
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 95000);
     try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, history: state.history.slice(-MAX_SEND_TURNS) }),
-        signal: controller.signal,
-      });
+      let res = await postChat(text, historyPayload(), controller.signal);
+      if (res.status === 413) {
+        state.history = []; // conversation too long for one request: continue without earlier turns
+        res = await postChat(text, [], controller.signal);
+      }
       let data = null;
       try { data = await res.json(); } catch { data = null; }
       pending.remove();

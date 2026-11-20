@@ -59,6 +59,7 @@ def scan_html(html: str, soup: BeautifulSoup | None = None) -> list[dict]:
     soup = soup or BeautifulSoup(html, "lxml")
     blobs: dict[str, list[str]] = {
         "html_comment": [], "hidden_element": [], "meta": [], "attribute": [], "embedded_json": [], "visible_text": [],
+        "title": [soup.title.get_text(" ", strip=True)] if soup.title else [],
     }
     for comment in soup.find_all(string=lambda s: isinstance(s, Comment)):
         blobs["html_comment"].append(str(comment))

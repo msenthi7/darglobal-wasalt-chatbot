@@ -2,8 +2,9 @@
 
 * Only models verified as $0 against OpenRouter's public /models pricing are ever called.
 * One retry policy lives here: SDK retries are not used (plain httpx), so attempts cannot multiply.
-* Transient failures (timeouts, 408/429/5xx) retry with backoff + jitter inside a total deadline,
-  then fall back to the next free model; the model that answered is always reported.
+* At most ``max_total_attempts`` upstream calls per question, all inside one total deadline that is
+  re-checked after waiting for a concurrency slot.
+* Daily budgets (per client and global) are spent only when a real upstream request is made.
 * Errors become typed ``LLMError``s with safe messages; upstream text is redacted before logging.
 """
 
@@ -24,7 +25,8 @@ from .config import Settings
 from .ratelimit import SlidingWindowLimiter
 
 log = logging.getLogger("app.llm")
-_THINK = re.compile(r"<think>.*?</think>|<thinking>.*?</thinking>", re.DOTALL | re.IGNORECASE)
+# Private reasoning is never shown, including reasoning cut off by the length limit (no closing tag).
+_THINK = re.compile(r"<think(?:ing)?>.*?(?:</think(?:ing)?>|\Z)", re.DOTALL | re.IGNORECASE)
 _KEYISH = re.compile(r"sk-or-[A-Za-z0-9_-]{8,}|Bearer\s+[A-Za-z0-9._-]{8,}")
 
 
@@ -103,11 +105,18 @@ class _AuthFailure(Exception):
     """The key itself was rejected: every model would fail the same way, so stop at once."""
 
 
+def _timeout_error() -> LLMError:
+    return LLMError("upstream_timeout", "The model took too long to respond. Please try again.",
+                    retryable=True, http_status=504)
+
+
 class OpenRouterClient:
     def __init__(self, settings: Settings, http: httpx.AsyncClient, registry: ModelRegistry,
-                 upstream_budget: SlidingWindowLimiter | None = None, *, clock=time.monotonic,
+                 upstream_budget: SlidingWindowLimiter | None = None,
+                 client_budget: SlidingWindowLimiter | None = None, *, clock=time.monotonic,
                  sleep=asyncio.sleep, rng=random.random) -> None:
-        self.s, self.http, self.registry, self.budget = settings, http, registry, upstream_budget
+        self.s, self.http, self.registry = settings, http, registry
+        self.budget, self.client_budget = upstream_budget, client_budget
         self._clock, self._sleep, self._rng = clock, sleep, rng
         self._sem = asyncio.Semaphore(settings.max_concurrent_upstream)
 
@@ -116,7 +125,7 @@ class OpenRouterClient:
             text = text.replace(self.s.openrouter_api_key, "[REDACTED]")
         return _KEYISH.sub("[REDACTED]", text)
 
-    async def complete(self, messages: list[dict], *, request_id: str) -> LLMResult:
+    async def complete(self, messages: list[dict], *, request_id: str, client: str = "anonymous") -> LLMResult:
         if not self.s.llm_configured:
             raise LLMError("not_configured", "The assistant's model access is not configured yet.",
                            retryable=False, http_status=503)
@@ -129,22 +138,19 @@ class OpenRouterClient:
         last_reason = "unknown"
         for index, model in enumerate(models):
             for attempt in range(1, self.s.max_attempts_per_model + 1):
-                remaining = deadline - self._clock()
-                if remaining < 4:
-                    raise LLMError("upstream_timeout", "The model took too long to respond. Please try again.",
-                                   retryable=True, http_status=504)
-                if self.budget is not None and self.budget.check("upstream") is not None:
-                    raise LLMError("daily_quota_reached", "Today's free model quota for this demo is used up. "
-                                   "Please try again tomorrow.", retryable=True, http_status=503)
+                if attempts >= self.s.max_total_attempts:
+                    break
+                if deadline - self._clock() < 4:
+                    raise _timeout_error()
                 attempts += 1
                 started = self._clock()
                 try:
-                    text, truncated, used = await self._call(model, messages, timeout=min(self.s.request_timeout_s, remaining - 1))
+                    text, truncated, used = await self._call(model, messages, deadline=deadline, client=client)
                 except _Retryable as exc:
                     last_reason = exc.reason
                     log.info(json.dumps({"event": "llm_retryable", "request_id": request_id, "model": model,
                                          "attempt": attempt, "reason": exc.reason}))
-                    if attempt < self.s.max_attempts_per_model:
+                    if attempt < self.s.max_attempts_per_model and attempts < self.s.max_total_attempts:
                         wait = exc.retry_after if exc.retry_after is not None else self._rng() * min(8.0, 1.5 * 2 ** (attempt - 1))
                         if wait < deadline - self._clock() - 5:
                             await self._sleep(wait)
@@ -161,11 +167,27 @@ class OpenRouterClient:
                 log.info(json.dumps({"event": "llm_ok", "request_id": request_id, "model": used, "attempts": attempts,
                                      "latency_ms": int((self._clock() - started) * 1000), "truncated": truncated}))
                 return LLMResult(text=text, model=used, attempts=attempts, fallback_used=index > 0, truncated=truncated)
-        log.warning(json.dumps({"event": "llm_exhausted", "request_id": request_id, "reason": last_reason}))
+            if attempts >= self.s.max_total_attempts:
+                break
+        log.warning(json.dumps({"event": "llm_exhausted", "request_id": request_id, "attempts": attempts,
+                                "reason": last_reason}))
         raise LLMError("upstream_unavailable", "The free models are busy or unavailable right now. Please try again "
                        "in a minute.", retryable=True, http_status=502)
 
-    async def _call(self, model: str, messages: list[dict], *, timeout: float) -> tuple[str, bool, str]:
+    def _spend(self, client: str) -> None:
+        """Take one upstream call from the per-client and global daily budgets (check both, then consume)."""
+        if self.client_budget is not None and self.client_budget.retry_after(client) is not None:
+            raise LLMError("client_quota_reached", "You've used this demo's daily allowance of model answers. "
+                           "Please try again tomorrow.", retryable=True, http_status=429)
+        if self.budget is not None and self.budget.retry_after("upstream") is not None:
+            raise LLMError("daily_quota_reached", "Today's free model quota for this demo is used up. "
+                           "Please try again tomorrow.", retryable=True, http_status=503)
+        if self.client_budget is not None:
+            self.client_budget.consume(client)
+        if self.budget is not None:
+            self.budget.consume("upstream")
+
+    async def _call(self, model: str, messages: list[dict], *, deadline: float, client: str) -> tuple[str, bool, str]:
         headers = {"Authorization": f"Bearer {self.s.openrouter_api_key}", "Content-Type": "application/json",
                    "X-Title": "DarGlobal & Wasalt public-data assistant (demo)"}
         if self.s.public_url:
@@ -173,13 +195,20 @@ class OpenRouterClient:
         body = {"model": model, "messages": messages, "max_tokens": self.s.max_output_tokens,
                 "temperature": self.s.temperature, "reasoning": {"effort": "low", "exclude": True}}
         try:
-            await asyncio.wait_for(self._sem.acquire(), timeout=timeout)
+            await asyncio.wait_for(self._sem.acquire(), timeout=max(0.1, deadline - self._clock() - 4))
         except asyncio.TimeoutError as exc:
-            raise _Retryable("local_concurrency_wait") from exc
+            raise _timeout_error() from exc
         try:
-            resp = await self.http.post(f"{self.s.openrouter_base_url}/chat/completions", json=body, headers=headers,
-                                        timeout=httpx.Timeout(timeout, connect=self.s.connect_timeout_s))
-        except httpx.TimeoutException as exc:
+            remaining = deadline - self._clock()  # re-checked after waiting for a slot
+            if remaining < 4:
+                raise _timeout_error()
+            self._spend(client)  # only now is a real upstream request about to be made
+            async with asyncio.timeout(remaining - 1):
+                resp = await self.http.post(f"{self.s.openrouter_base_url}/chat/completions", json=body,
+                                            headers=headers,
+                                            timeout=httpx.Timeout(self.s.request_timeout_s,
+                                                                  connect=self.s.connect_timeout_s))
+        except (TimeoutError, httpx.TimeoutException) as exc:
             raise _Retryable("timeout") from exc
         except httpx.TransportError as exc:
             raise _Retryable(f"transport:{type(exc).__name__}") from exc
@@ -213,7 +242,7 @@ class OpenRouterClient:
         content = message.get("content") if isinstance(message, dict) else None
         if isinstance(content, list):  # some providers return content parts
             content = "".join(p.get("text", "") for p in content if isinstance(p, dict))
-        text = _THINK.sub("", content or "").strip()  # never show private reasoning (A01)
+        text = _THINK.sub("", content or "").strip()
         if not text:
             raise _NextModel("malformed:empty_content")
         used = str(data.get("model") or "")[:100] or "unknown"

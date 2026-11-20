@@ -1,9 +1,9 @@
 {
  "schema_version": 1,
  "scraper_version": "1.0.0",
- "started_at": "2026-11-20T17:02:31+00:00",
- "finished_at": "2026-11-20T17:04:06+00:00",
- "duration_s": 95.2,
+ "started_at": "2026-11-20T17:26:33+00:00",
+ "finished_at": "2026-11-20T17:28:06+00:00",
+ "duration_s": 93.1,
  "complete": true,
  "stages": {
   "live_probe": {
@@ -22,7 +22,8 @@
   },
   "darglobal_archive": {
    "status": "ok",
-   "pages_ok": 383,
+   "pages_ok": 382,
+   "hard_failures": 0,
    "index_pages": 2177,
    "index_source": "live_index"
   },
@@ -46,20 +47,22 @@
   "wasalt_archive": {
    "status": "ok",
    "pages_ok": 19,
+   "hard_failures": 0,
    "targets": 21
   }
  },
  "documents": {
-  "total": 449,
-  "darglobal:archive_snapshot": 367,
+  "total": 448,
+  "darglobal:archive_snapshot": 366,
   "wasalt:live_sitemap_derived": 63,
   "wasalt:archive_snapshot": 19
  },
  "item_status_counts": {
   "archive_page:darglobal": {
-   "ok": 383,
+   "ok": 382,
    "archived_copy_is_bot_challenge": 44,
-   "archive_no_capture": 23
+   "archive_no_capture": 23,
+   "capture_blocked_robots": 1
   },
   "archive_page:wasalt": {
    "ok": 19,
@@ -89,6 +92,24 @@
   "ok": 30,
   "blocked_bot_challenge": 3,
   "http_error": 3
+ },
+ "robots": {
+  "https://darglobal.co.uk": {
+   "status": "ok",
+   "http_status": 200
+  },
+  "https://wasalt.sa": {
+   "status": "ok",
+   "http_status": 200
+  },
+  "https://web.archive.org": {
+   "status": "http_error",
+   "http_status": 404
+  },
+  "https://cdn.wasalt.sa": {
+   "status": "http_error",
+   "http_status": 404
+  }
  },
  "config": {
   "user_agent": "DGW-AssignmentScraper/1.0 (candidate technical assignment; polite; robots-aware)",
@@ -3567,9 +3588,7 @@
    "stage": "archive_page",
    "site": "darglobal",
    "url": "https://darglobal.co.uk/win-a-trip-to-dubai",
-   "status": "ok",
-   "capture": "20260531040858",
-   "quarantined_lines": 0
+   "status": "capture_blocked_robots"
   },
   {
    "stage": "archive_page",

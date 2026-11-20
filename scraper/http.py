@@ -71,6 +71,7 @@ class PoliteClient:
         self._last: dict[str, float] = {}
         self._robots: dict[str, Protego | str] = {}
         self.robots_raw: dict[str, str] = {}
+        self.robots_status: dict[str, dict] = {}
         self.log: list[dict] = []
 
     def close(self) -> None:
@@ -89,10 +90,13 @@ class PoliteClient:
         rp = self._robots.get(origin)
         if rp is None:
             res = self._request(origin + "/robots.txt", check_robots=False, max_bytes=512 * 1024)
+            self.robots_status[origin] = {"status": res.status, "http_status": res.http_status}
             if res.ok:
                 text = res.body.decode("utf-8", "replace")
                 self.robots_raw[origin] = text
                 rp = Protego.parse(text)
+            elif res.status == "blocked_bot_challenge":
+                rp = "DISALLOW_ALL"  # the rules exist but cannot be read: never assume permission
             elif res.http_status is not None and 400 <= res.http_status < 500 and res.http_status != 429:
                 rp = "ALLOW_ALL"  # RFC 9309 2.3.1.3: robots.txt unavailable -> no restrictions
             else:
@@ -169,6 +173,8 @@ class PoliteClient:
                 outcome = FetchResult(url, "timeout", attempts=attempt, detail=type(exc).__name__)
             except httpx.TransportError as exc:
                 outcome = FetchResult(url, "network_error", attempts=attempt, detail=type(exc).__name__)
+            except httpx.HTTPError as exc:  # e.g. DecodingError (body does not match Content-Encoding): not transient
+                return FetchResult(url, "decode_error", attempts=attempt, detail=type(exc).__name__)
             else:
                 if 200 <= status < 300:
                     return FetchResult(url, "ok", status, content_type=ctype, body=body, attempts=attempt)

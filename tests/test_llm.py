@@ -77,7 +77,7 @@ def test_exhausted_retries_raise_typed_retryable_error():
     with pytest.raises(LLMError) as info:
         run([httpx.Response(500)] * 4)
     assert info.value.code == "upstream_unavailable" and info.value.retryable
-    assert len(info.value.calls) == 4  # type: ignore[attr-defined]  # 2 attempts x 2 models, never more
+    assert len(info.value.calls) == 3  # type: ignore[attr-defined]  # capped per question (max_total_attempts)
 
 
 def test_private_reasoning_is_stripped_and_truncation_flagged():

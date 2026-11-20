@@ -14,6 +14,7 @@ from . import config
 from .traps import MAX_JSON_BYTES, is_hidden
 
 _WS = re.compile(r"[ \t\r\f\v ]+")
+_SURROGATE = re.compile("[\ud800-\udfff]")  # lone surrogates cannot be encoded as UTF-8
 _URLISH = re.compile(r"^(?:https?://|/[\w-]+/|www\.)|\.(?:jpe?g|png|webp|svg|gif|mp4|pdf)$", re.IGNORECASE)
 _HAS_LETTER = re.compile(r"[A-Za-z؀-ۿ]")
 
@@ -41,7 +42,7 @@ class Extracted:
 
 
 def clean_line(text: str) -> str:
-    text = strip_invisible(str(text))
+    text = strip_invisible(_SURROGATE.sub("", str(text)))
     text = re.sub(r"<[^>]{1,200}>", " ", text)  # stray markup inside CMS rich text
     return _WS.sub(" ", text).strip()[: config.MAX_LINE_CHARS]
 
@@ -177,6 +178,11 @@ def extract(html: str, soup: BeautifulSoup | None = None, *, site: str) -> Extra
     if out.next_data and isinstance(out.next_data.get("locale"), str):
         lang = out.next_data["locale"]
     out.lang = "ar" if str(lang).lower().startswith("ar") else "en"
+    for attr in ("title", "description"):  # these reach the prompt too, so they get the same quarantine
+        value = getattr(out, attr)
+        if value and line_is_suspicious(value):
+            out.quarantined.append(value[:300])
+            setattr(out, attr, "")
     if site == "darglobal":
         out.fact_lines = darglobal_facts(out.next_data)
 

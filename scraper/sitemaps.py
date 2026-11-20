@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import gzip
 import io
+import zlib
 from dataclasses import dataclass
 
 import defusedxml.ElementTree as DET
@@ -27,11 +28,14 @@ def maybe_gunzip(body: bytes, limit: int = config.MAX_SITEMAP_BYTES) -> bytes:
     if body[:2] != b"\x1f\x8b":
         return body
     out = bytearray()
-    with gzip.GzipFile(fileobj=io.BytesIO(body)) as gz:
-        while chunk := gz.read(1024 * 1024):
-            out.extend(chunk)
-            if len(out) > limit:
-                raise SitemapError("decompressed sitemap exceeds size limit")
+    try:
+        with gzip.GzipFile(fileobj=io.BytesIO(body)) as gz:
+            while chunk := gz.read(1024 * 1024):
+                out.extend(chunk)
+                if len(out) > limit:
+                    raise SitemapError("decompressed sitemap exceeds size limit")
+    except (OSError, EOFError, zlib.error) as exc:
+        raise SitemapError(f"corrupt or truncated gzip sitemap: {type(exc).__name__}") from exc
     return bytes(out)
 
 

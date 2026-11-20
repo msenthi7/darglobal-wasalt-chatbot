@@ -57,10 +57,12 @@ class Settings:
     request_timeout_s: float = 45.0
     total_deadline_s: float = 75.0
     max_attempts_per_model: int = 2
+    max_total_attempts: int = 3
     max_output_tokens: int = 900
     temperature: float = 0.2
     per_client_per_minute: int = 6
-    per_client_per_day: int = 60
+    per_client_per_day: int = 20
+    client_upstream_per_day: int = 15
     global_per_minute: int = 15
     upstream_per_day: int = 45
     max_concurrent_upstream: int = 3
@@ -84,6 +86,7 @@ class Settings:
             source_url=source_url,
             per_client_per_minute=_int("RATE_PER_CLIENT_PER_MINUTE", cls.per_client_per_minute, 1, 120),
             per_client_per_day=_int("RATE_PER_CLIENT_PER_DAY", cls.per_client_per_day, 1, 5000),
+            client_upstream_per_day=_int("UPSTREAM_CALLS_PER_CLIENT_PER_DAY", cls.client_upstream_per_day, 1, 100_000),
             global_per_minute=_int("RATE_GLOBAL_PER_MINUTE", cls.global_per_minute, 1, 600),
             upstream_per_day=_int("UPSTREAM_CALLS_PER_DAY", cls.upstream_per_day, 1, 100_000),
         )

@@ -15,6 +15,7 @@ def test_atomic_write_replaces_content_and_is_readable_by_other_users(tmp_path):
 
 class _NoNetworkClient:
     log: list = []
+    robots_status: dict = {}
 
     def __enter__(self):
         return self

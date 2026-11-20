@@ -25,11 +25,11 @@ from urllib.parse import urlsplit
 
 from bs4 import BeautifulSoup
 
-from app.textguard import scan_text
+from app.textguard import line_is_suspicious, scan_text
 
 from . import config, wasalt
 from .archive import ArchiveError, Capture, cdx_captures, index_by_page
-from .extract import darglobal_catalog, extract
+from .extract import clean_line, darglobal_catalog, extract
 from .http import PoliteClient, is_bot_challenge
 from .sitemaps import SitemapEntry, SitemapError, parse_sitemap
 from .traps import scan_html
@@ -71,6 +71,20 @@ def jsonl_line(record: dict) -> str:
     return text + "\n"
 
 
+SITE_HOST = {"darglobal": "darglobal.co.uk", "wasalt": "wasalt.sa"}
+# Outcomes that mean "the archive has no usable copy" rather than "the run failed".
+ARCHIVE_ABSENT = {"archive_no_capture", "archived_copy_is_bot_challenge", "blocked_robots", "capture_blocked_robots"}
+
+
+def archive_stage(items: list[dict], site: str) -> tuple[str, int, int]:
+    """ok only if real fetch failures stay under 10% of attempted pages; otherwise partial (or failed)."""
+    rows = [i for i in items if i.get("stage") == "archive_page" and i.get("site") == site]
+    ok = sum(1 for i in rows if i["status"] == "ok")
+    hard = sum(1 for i in rows if i["status"] != "ok" and i["status"] not in ARCHIVE_ABSENT)
+    status = "failed" if not ok else ("partial" if hard > max(2, 0.1 * len(rows)) else "ok")
+    return status, ok, hard
+
+
 def dg_priority(url: str) -> int:
     path = urlsplit(url).path.lower()
     if path.startswith("/blog/"):
@@ -103,7 +117,12 @@ class Build:
         self.add_traps(source, url, [{"location": location, "pattern": f.pattern, "severity": f.severity,
                                       "excerpt": f.excerpt} for f in scan_text(text)])
 
-    def fetch_sitemap(self, url: str) -> list[SitemapEntry] | None:
+    def fetch_sitemap(self, url: str, *, depth: int = 0, seen: set[str] | None = None) -> list[SitemapEntry] | None:
+        seen = set() if seen is None else seen
+        if url in seen or depth > 2:  # a sitemap index that lists itself (or nests deeply) is not followed
+            self.items.append({"stage": "sitemap", "url": url, "status": "skipped_loop_or_depth"})
+            return []
+        seen.add(url)
         res = self.client.get(url, max_bytes=config.MAX_SITEMAP_BYTES)
         if not res.ok:
             self.items.append({"stage": "sitemap", "url": url, "status": res.status, "http_status": res.http_status,
@@ -118,7 +137,7 @@ class Build:
         if kind == "sitemapindex":
             children: list[SitemapEntry] = []
             for child in entries[:20]:
-                children.extend(self.fetch_sitemap(child.loc) or [])
+                children.extend(self.fetch_sitemap(child.loc, depth=depth + 1, seen=seen) or [])
             entries = children
         self.items.append({"stage": "sitemap", "url": url, "status": "ok", "entries": len(entries)})
         return entries
@@ -171,11 +190,19 @@ class Build:
         return len(ex.quarantined)
 
     def archive_page(self, site: str, url: str, candidates: list[Capture]) -> None:
+        if not self.client.robots_allows(iri_to_uri(url))[0]:
+            self.items.append({"stage": "archive_page", "site": site, "url": url, "status": "blocked_robots"})
+            return
         if not candidates:
             self.items.append({"stage": "archive_page", "site": site, "url": url, "status": "archive_no_capture"})
             return
         last = "archive_no_capture"
         for cap in candidates[: config.MAX_CAPTURE_TRIES]:
+            parts = urlsplit(cap.original)  # the site's current robots rules also apply to the archived copy's URL
+            live = f"https://{SITE_HOST[site]}{parts.path or '/'}" + (f"?{parts.query}" if parts.query else "")
+            if not self.client.robots_allows(iri_to_uri(live))[0]:
+                last = "capture_blocked_robots"
+                continue
             html, status = self.fetch_capture(cap)
             if html is None:
                 last = status
@@ -243,9 +270,8 @@ class Build:
             self.archive_page("darglobal", url, index.get(page_key(url), []))
             if i % 25 == 0:
                 print(f"  darglobal {i}/{min(len(ordered), max_pages)} ({time.monotonic() - started:.0f}s)", flush=True)
-        ok = sum(1 for it in self.items if it.get("stage") == "archive_page" and it.get("site") == "darglobal"
-                 and it["status"] == "ok")
-        self.stage("darglobal_archive", "ok" if ok else "failed", pages_ok=ok, index_pages=len(index),
+        status, ok, hard = archive_stage(self.items, "darglobal")
+        self.stage("darglobal_archive", status, pages_ok=ok, hard_failures=hard, index_pages=len(index),
                    index_source=index_source)
 
     def darglobal_catalog_docs(self) -> None:
@@ -315,7 +341,6 @@ class Build:
                    fetched=sorted(got), expected=len(sitemaps), derived_docs=len(derived))
 
     def wasalt_archive(self) -> None:
-        ok = 0
         for target in config.WASALT_ARCHIVE_TARGETS:
             pattern = iri_to_uri(target).split("://", 1)[1]
             try:
@@ -325,10 +350,9 @@ class Build:
                 self.items.append({"stage": "archive_page", "site": "wasalt", "url": target, "status": "cdx_failed",
                                    "detail": str(exc)[:200]})
                 continue
-            before = len(self.docs)
             self.archive_page("wasalt", target, caps)
-            ok += len(self.docs) > before
-        self.stage("wasalt_archive", "ok" if ok else "failed", pages_ok=ok, targets=len(config.WASALT_ARCHIVE_TARGETS))
+        status, ok, hard = archive_stage(self.items, "wasalt")
+        self.stage("wasalt_archive", status, pages_ok=ok, hard_failures=hard, targets=len(config.WASALT_ARCHIVE_TARGETS))
 
     def manual_intake(self) -> None:
         folder = DATA / "manual"
@@ -352,7 +376,10 @@ class Build:
                         continue
                     self.scan_plain("manual", url, text, "visible_text")
                     lines = [l for l in (ln.strip() for ln in text.splitlines()) if len(l) >= 3]
-                    self.docs.append({"site": site, "url": url, "title": str(item.get("title") or url)[:200],
+                    title = clean_line(str(item.get("title") or ""))[:200]
+                    if not title or line_is_suspicious(title):
+                        title = url
+                    self.docs.append({"site": site, "url": url, "title": title,
                                       "description": "", "lang": "en", "visible_lines": lines, "fact_lines": [],
                                       "source_type": "manual", "retrieved_from": f"data/manual/{path.name}",
                                       "captured_at": self.fetched_date})
@@ -433,6 +460,7 @@ def main(argv: list[str] | None = None) -> int:
         b.manual_intake()
         records = b.finalise()
         requests = len(client.log)
+        robots_status = dict(client.robots_status)
         request_status = Counter(e["status"] for e in client.log)
     if not records:
         print("fatal: no documents produced", file=sys.stderr)
@@ -448,6 +476,7 @@ def main(argv: list[str] | None = None) -> int:
         "documents": {"total": len(records), **Counter(f"{r['site']}:{r['source_type']}" for r in records)},
         "item_status_counts": {k: dict(v) for k, v in sorted(status_counts.items())},
         "requests": {"total": requests, **request_status},
+        "robots": robots_status,
         "config": {"user_agent": config.USER_AGENT, "archive_from": config.ARCHIVE_FROM,
                    "max_darglobal_pages": args.max_darglobal, "min_interval_s": config.MIN_INTERVAL_S,
                    "max_attempts": config.MAX_ATTEMPTS},
