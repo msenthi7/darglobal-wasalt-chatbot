@@ -1,6 +1,6 @@
 # DarGlobal & Wasalt Assistant
 
-**Live demo:** being deployed on Render (link added on deploy) · **Source:** https://github.com/msenthi7/darglobal-wasalt-chatbot
+**Live demo:** https://darglobal-wasalt-chatbot-mx7k.onrender.com · **Source:** https://github.com/msenthi7/darglobal-wasalt-chatbot
 
 A retrieval-augmented chatbot that answers questions about DarGlobal's real-estate projects and Wasalt's Saudi property listings. It uses only publicly available data, cites the exact pages behind each answer with their capture dates, runs on a free OpenRouter model, and ships as a Docker container.
 
@@ -117,7 +117,7 @@ Rebuild the corpus (about 25 minutes, mostly polite request spacing; reruns reus
 .venv/bin/python -m pytest
 ```
 
-88 tests, with OpenRouter mocked so no network is needed. They cover trap detection (including Arabic and Unicode tag smuggling) and quarantine, URL-allowlist bypass attempts, robots wildcards, bot-challenge handling, redirect scope, retries and `Retry-After`, size caps, XML entity bombs, corpus integrity, retrieval determinism, rate limits, model fallback and the auth stop, the daily budget, key redaction, citation validation, API error envelopes and spoofed `X-Forwarded-For` headers. CI runs the suite plus a container smoke test on every push.
+89 tests, with OpenRouter mocked so no network is needed. They cover trap detection (including Arabic and Unicode tag smuggling) and quarantine, URL-allowlist bypass attempts, robots wildcards, bot-challenge handling, redirect scope, retries and `Retry-After`, size caps, XML entity bombs, corpus integrity, retrieval determinism, rate limits, model fallback and the auth stop, the daily budget, key redaction, citation validation, API error envelopes and spoofed `X-Forwarded-For` headers. CI runs the suite plus a container smoke test on every push.
 
 ## Limitations
 
@@ -129,10 +129,11 @@ Rebuild the corpus (about 25 minutes, mostly polite request spacing; reruns reus
 
 ## Verification status
 
-- **Automated tests:** 88 unit, integration and API tests pass with OpenRouter mocked. Mutation checks confirmed that the trap-regex, file-permission, model-preference and site-scoping regression tests fail without their fixes.
+- **Automated tests:** 89 unit, integration and API tests pass with OpenRouter mocked. Mutation checks confirmed that the trap-regex, file-permission, model-preference, site-scoping and reply-language regression tests fail without their fixes.
 - **Independent review:** a separate reviewer found 15 issues (none high-severity), including a page-title route around the trap filter, quota exhaustion by one visitor, and robots.txt gaps for archived copies. All 15 are fixed; 13 have automated regression tests, the access-log change was confirmed in the container's logs (no IP addresses), and the UI history trimming was checked by code inspection.
-- **Live model answers:** four questions run locally with the real key. DarGlobal's Dubai projects and Wasalt's rental count were answered with correct citations, a prompt-injection attempt was ignored (only its London question was answered), and an Arabic question about DarGlobal in Jeddah exposed a retrieval bug (next item). The primary model was rate-limited upstream, so answers came from the first fallback.
-- **Found by live testing, now fixed:** the Arabic Jeddah question retrieved Wasalt's Arabic listings instead of DarGlobal's pages, and the rate-limited primary cost three model calls per question. Questions that name a site are now answered from that site's pages, and the model that answered last is tried first; both fixes have regression tests.
+- **Live model answers (local):** four questions run with the real key. DarGlobal's Dubai projects and Wasalt's rental count were answered with correct citations, a prompt-injection attempt was ignored (only its London question was answered), and an Arabic question about DarGlobal in Jeddah exposed a retrieval bug. The primary model was rate-limited upstream, so answers came from the first fallback.
+- **Deployed:** live on Render's free Docker tier at the link above. `/healthz` reports 448 documents and a configured model, and the security headers are served. In the browser, the Arabic Jeddah question was answered in Arabic with six DarGlobal citations (36.5 s while the busy primary was retried), and the next question took 5.3 s because the working model was remembered.
+- **Found by live testing, now fixed:** the Arabic Jeddah question retrieved Wasalt's Arabic listings instead of DarGlobal's pages; the rate-limited primary cost three model calls per question; and an English question after Arabic turns was answered in Arabic. Questions that name a site are now answered from that site's pages, the model that answered last is tried first, and each question's own script sets the reply language. All three fixes have regression tests.
 - **Container:** image built and smoke-tested locally (linux/arm64): runs as UID 1000, serves the UI, answers `/healthz`, and returns a typed `503 not_configured` when no key is set. CI repeats the build and smoke test on linux/amd64 for every push.
 - **UI:** checked in a browser at desktop and phone width, in light and dark themes, with no console errors under the CSP.
 - **Retrieval:** 12 representative English and Arabic questions spot-checked; each retrieves the expected source first.

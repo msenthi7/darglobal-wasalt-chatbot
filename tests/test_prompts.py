@@ -43,3 +43,14 @@ def test_short_follow_ups_borrow_the_previous_question_for_retrieval():
     assert "Trump Tower Jeddah" in retrieval_query("and its status?", history)
     long_q = "What amenities does the Trump Golf Villas project in Muscat offer to residents?"
     assert retrieval_query(long_q, history) == long_q
+
+
+def test_reply_language_follows_the_latest_message_not_the_history():
+    history = [ChatTurn(role="user", content="ما هي مشاريع دار جلوبال في جدة؟"),
+               ChatTurn(role="assistant", content="تشمل المشاريع برج ترامب جدة [1].")]
+    msgs, _ = build_messages("How many apartments for sale are listed on Wasalt?", history, hits(1))
+    assert msgs[-1]["content"].endswith("Answer in English.")
+    msgs, _ = build_messages("كم عدد الشقق المعروضة للبيع في وصلت؟", [], hits(1))
+    assert msgs[-1]["content"].endswith("Answer in Arabic.")
+    msgs, _ = build_messages("ما هي مشاريع DarGlobal في جدة؟", [], hits(1))  # mostly Arabic letters
+    assert msgs[-1]["content"].endswith("Answer in Arabic.")

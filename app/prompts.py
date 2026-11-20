@@ -63,6 +63,14 @@ def retrieval_query(message: str, history: list[ChatTurn]) -> str:
     return message
 
 
+def reply_language(message: str) -> str:
+    """The latest message's script decides the reply language. Without an explicit per-turn instruction, models
+    drift to the language of earlier turns (an English follow-up to an Arabic exchange got an Arabic answer)."""
+    letters = [c for c in message if c.isalpha()]
+    arabic = sum(1 for c in letters if "\u0600" <= c <= "\u06ff")
+    return "Arabic" if letters and arabic * 2 >= len(letters) else "English"
+
+
 def build_messages(message: str, history: list[ChatTurn], hits: list[Hit],
                    now: datetime | None = None) -> tuple[list[dict], list[Hit]]:
     """Return the chat messages and the hits actually sent (citations are validated against those only)."""
@@ -88,7 +96,8 @@ def build_messages(message: str, history: list[ChatTurn], hits: list[Hit],
             content = _CITE_GROUP.sub("", content)
         messages.append({"role": turn.role, "content": content[:MAX_HISTORY_CHARS]})
     sources = "\n\n".join(blocks) if blocks else "(no matching sources were found)"
-    messages.append({"role": "user", "content": f"<sources>\n{sources}\n</sources>\n\nQuestion: {defang(message)}"})
+    messages.append({"role": "user", "content": f"<sources>\n{sources}\n</sources>\n\nQuestion: {defang(message)}\n\n"
+                                                f"Answer in {reply_language(message)}."})
     return messages, sent
 
 
