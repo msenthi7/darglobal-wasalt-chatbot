@@ -1,0 +1,10 @@
+[project]
+name = "darglobal-wasalt-chatbot"
+version = "1.0.0"
+description = "Grounded chatbot over public DarGlobal and Wasalt data (technical assignment)."
+requires-python = ">=3.13"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q --import-mode=importlib"

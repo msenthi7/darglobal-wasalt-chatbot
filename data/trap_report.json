@@ -1,0 +1,61 @@
+{
+ "generated_at": "2026-11-20T17:04:06+00:00",
+ "summary": {
+  "total": 6,
+  "info:ai_crawler_name": 3,
+  "info:ai_policy": 3
+ },
+ "by_location": {
+  "robots_txt": 6
+ },
+ "findings": [
+  {
+   "source": "robots_txt",
+   "url": "https://wasalt.sa/robots.txt",
+   "location": "robots_txt",
+   "pattern": "ai_crawler_name",
+   "severity": "info",
+   "excerpt": "Allow selected AI bots to access internal search results User-agent: ChatGPT-User Allow: /search User-agent: anthropic-ai Allow: /search User-agent:"
+  },
+  {
+   "source": "robots_txt",
+   "url": "https://wasalt.sa/robots.txt",
+   "location": "robots_txt",
+   "pattern": "ai_crawler_name",
+   "severity": "info",
+   "excerpt": "l search results User-agent: ChatGPT-User Allow: /search User-agent: anthropic-ai Allow: /search User-agent: PerplexityBot Allow: /search # Default r"
+  },
+  {
+   "source": "robots_txt",
+   "url": "https://wasalt.sa/robots.txt",
+   "location": "robots_txt",
+   "pattern": "ai_crawler_name",
+   "severity": "info",
+   "excerpt": "Allow: /search User-agent: anthropic-ai Allow: /search User-agent: PerplexityBot Allow: /search # Default rules for all other bots User-agent: * Allo"
+  },
+  {
+   "source": "robots_txt",
+   "url": "https://wasalt.sa/robots.txt",
+   "location": "robots_txt",
+   "pattern": "ai_policy",
+   "severity": "info",
+   "excerpt": "# Allow selected AI bots to access internal search results User-agent: ChatGPT-User Allow: /se"
+  },
+  {
+   "source": "robots_txt",
+   "url": "https://wasalt.sa/robots.txt",
+   "location": "robots_txt",
+   "pattern": "ai_policy",
+   "severity": "info",
+   "excerpt": "t: * Allow: / Disallow: /search Disallow: /cdn-cgi/rum # Note: We're allowing AI access to most areas to support future integrations - no additional r"
+  },
+  {
+   "source": "robots_txt",
+   "url": "https://wasalt.sa/robots.txt",
+   "location": "robots_txt",
+   "pattern": "ai_policy",
+   "severity": "info",
+   "excerpt": "map: https://cdn.wasalt.sa/sitemap/rental_srp_sitemap_ar_sa.xml.gz # AI Policy Reference # LLM-policy: https://wasalt.sa/llms.txt"
+  }
+ ]
+}

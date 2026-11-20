@@ -1,0 +1,4151 @@
+{
+ "schema_version": 1,
+ "scraper_version": "1.0.0",
+ "started_at": "2026-11-20T17:02:31+00:00",
+ "finished_at": "2026-11-20T17:04:06+00:00",
+ "duration_s": 95.2,
+ "complete": true,
+ "stages": {
+  "live_probe": {
+   "status": "ok",
+   "homepage_status": {
+    "darglobal": "blocked_bot_challenge",
+    "wasalt": "blocked_bot_challenge"
+   },
+   "note": "pages returning blocked_bot_challenge are not fetched directly; no bypass is attempted"
+  },
+  "darglobal_sitemap": {
+   "status": "ok",
+   "sitemap_urls": 482,
+   "selected": 450,
+   "over_cap": 23
+  },
+  "darglobal_archive": {
+   "status": "ok",
+   "pages_ok": 383,
+   "index_pages": 2177,
+   "index_source": "live_index"
+  },
+  "darglobal_catalog": {
+   "status": "ok",
+   "projects": 39,
+   "menu_items": 44
+  },
+  "wasalt_sitemaps": {
+   "status": "ok",
+   "fetched": [
+    "category_sitemap_en_sa",
+    "product_sitemap_en_sa",
+    "rental_pdp_sitemap_en_sa",
+    "rental_srp_sitemap_en_sa",
+    "static_sitemap_en_sa"
+   ],
+   "expected": 5,
+   "derived_docs": 63
+  },
+  "wasalt_archive": {
+   "status": "ok",
+   "pages_ok": 19,
+   "targets": 21
+  }
+ },
+ "documents": {
+  "total": 449,
+  "darglobal:archive_snapshot": 367,
+  "wasalt:live_sitemap_derived": 63,
+  "wasalt:archive_snapshot": 19
+ },
+ "item_status_counts": {
+  "archive_page:darglobal": {
+   "ok": 383,
+   "archived_copy_is_bot_challenge": 44,
+   "archive_no_capture": 23
+  },
+  "archive_page:wasalt": {
+   "ok": 19,
+   "archive_no_capture": 2
+  },
+  "finalise:darglobal": {
+   "too_little_text": 15,
+   "duplicate_content": 14
+  },
+  "live_probe:darglobal": {
+   "blocked_bot_challenge": 1,
+   "http_error": 1
+  },
+  "live_probe:wasalt": {
+   "blocked_bot_challenge": 2
+  },
+  "select:darglobal": {
+   "skipped_transactional": 6,
+   "skipped_page_cap": 23
+  },
+  "sitemap:-": {
+   "ok": 6
+  }
+ },
+ "requests": {
+  "total": 36,
+  "ok": 30,
+  "blocked_bot_challenge": 3,
+  "http_error": 3
+ },
+ "config": {
+  "user_agent": "DGW-AssignmentScraper/1.0 (candidate technical assignment; polite; robots-aware)",
+  "archive_from": "2025",
+  "max_darglobal_pages": 450,
+  "min_interval_s": {
+   "darglobal.co.uk": 2.0,
+   "www.darglobal.co.uk": 2.0,
+   "wasalt.sa": 2.0,
+   "cdn.wasalt.sa": 1.0,
+   "web.archive.org": 3.0
+  },
+  "max_attempts": 4
+ },
+ "policy": "Direct pages behind bot challenges are recorded, never bypassed. robots.txt rules are applied to every host (including for archived copies of a site's pages). Archived copies come from the Internet Archive and are dated per document.",
+ "items": [
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk",
+   "status": "ok",
+   "capture": "20260531060710",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/DarGlobal-Insignia-Card",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/DarGlobal-exclusive-Off-Plan-Investment-Catalogue",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/Invest-crypto",
+   "status": "ok",
+   "capture": "20260531042430",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/La-Collina",
+   "status": "ok",
+   "capture": "20260531043146",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/Sunrise-Haven-Luxury-Villas",
+   "status": "ok",
+   "capture": "20260531030925",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/Trump-International-Hotel-Tower-Dubai",
+   "status": "ok",
+   "capture": "20250423123856",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/about",
+   "status": "ok",
+   "capture": "20260531043124",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/aida-360",
+   "status": "ok",
+   "capture": "20260531044620",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/aida-coastal-investment-villas",
+   "status": "ok",
+   "capture": "20260531031849",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/aida-trump-international-apartments",
+   "status": "ok",
+   "capture": "20260531043613",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/aida-trump-international-cliff-villas",
+   "status": "ok",
+   "capture": "20260531030910",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/aida-trump-international-hotel",
+   "status": "ok",
+   "capture": "20260531031925",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/aida-trump-villas",
+   "status": "ok",
+   "capture": "20260531042319",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/amaya/amaya-plots",
+   "status": "ok",
+   "capture": "20260531025122",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/amaya/padel-living",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/amour-sans-detour",
+   "status": "ok",
+   "capture": "20260531030828",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/amour-sans-detour-2",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/aston-martin-media",
+   "status": "ok",
+   "capture": "20260531025148",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/become-a-broker",
+   "status": "ok",
+   "capture": "20260531025006",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/become-an-agent",
+   "status": "ok",
+   "capture": "20260531025115",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog",
+   "status": "ok",
+   "capture": "20260531030858",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/ The-Rise-of-Experiential-Real-Estate-Redefining-Modern-Living",
+   "status": "ok",
+   "capture": "20260531025147",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/ Why-Our-Broker-Programs-Are-the-Best-in-the-Business",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/10-reasons-to-invest-in-dubai-real-estate",
+   "status": "ok",
+   "capture": "20260531030740",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/A-Cut-Above-The-Signature-Amenities-That-Set-DarGlobal-Apart",
+   "status": "ok",
+   "capture": "20260531025052",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Al-Marjan-Island-A-Jewel-in-the-UAEs-Real Estate-Market",
+   "status": "ok",
+   "capture": "20260531025135",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/An-Insider’s-Guide-to-the-Most-Prestigious-Real-Estate-Markets",
+   "status": "ok",
+   "capture": "20260531025128",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Elegance-in-the-Sky-DarGlobal-and-Trump-Organization-Unveil-Jeddah-Tower",
+   "status": "ok",
+   "capture": "20260531025014",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Embrace-Spanish-Luxury-with-Tierra-Viva-by-DarGlobal",
+   "status": "ok",
+   "capture": "20260531025028",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Embrace-Spanish-Luxury-with-Tierra-Viva-by-DarGlobal-and-Automobili-Lamborghini",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Experience-Unmatched-Luxury-at-Neptune-by-Mouawad-Villas-in-Riyadh",
+   "status": "ok",
+   "capture": "20260531025152",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/How-DarGlobal-Ensures-Long-Term-Value-for-Its-Investors",
+   "status": "ok",
+   "capture": "20260531025017",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/How-DarGlobal-Turns-Iconic-Ideas-into-Landmarks",
+   "status": "ok",
+   "capture": "20260531025028",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/How-DarGlobals-Properties-Promote-Wellbeing-and-Leisure",
+   "status": "ok",
+   "capture": "20260531025032",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/How-to-Diversify-Your-Portfolio-with-International-Real-Estate-Investments",
+   "status": "ok",
+   "capture": "20260531025012",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Inside-Spain-Exclusive-Estates-A-Look-at-the-Most-Prestigious-Properties",
+   "status": "ok",
+   "capture": "20260531043437",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Investing-in-Coastal-Real-Estate-Why-Waterfront-Properties-Remain-Popular",
+   "status": "ok",
+   "capture": "20260531025141",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Investing-in-Elegance-The-Unique-Benefits-of-DarGlobal-Luxury-Properties-in-Qatar",
+   "status": "ok",
+   "capture": "20260531025046",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Investing-in-Saudi-Arabia’s-Real-Estate-Opportunities-in-a-Growing Market",
+   "status": "ok",
+   "capture": "20260531044006",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Les-Vagues-by-Elie-Saab-A-Masterpiece-of-Coastal-Luxury-and-Elegance-in-Qatar",
+   "status": "ok",
+   "capture": "20260531025037",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Living-Between-Cities-Managing-Luxury-Properties-Across-the-Globe",
+   "status": "ok",
+   "capture": "20260531025153",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Luxury-Real-Estate-Trends-to-Watch-in-the-Coming-Years",
+   "status": "ok",
+   "capture": "20260531025202",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Omans-Hidden-Gem-Living-in-the-Heart-of-AIDA",
+   "status": "ok",
+   "capture": "20260531025047",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Our-Vision-for-the-future-Whats-Next-for-Real-Estate-Development",
+   "status": "ok",
+   "capture": "20260531025135",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Seasonal-Real-Estate-Trends-Why-Now-Is-the-Perfect-Time-to-Invest",
+   "status": "ok",
+   "capture": "20260531025150",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Smart-Homes-and-Beyond-DarGlobals-Vision-for-Modern-Luxury-Living",
+   "status": "ok",
+   "capture": "20260531025137",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/The Growing-Trend-of-Dual-Purpose-Properties-Live-Earn-and-Relax",
+   "status": "ok",
+   "capture": "20260531025153",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/The-Benefits-of-Owning-a-Branded-Residence-More-Than-Just-a-Name",
+   "status": "ok",
+   "capture": "20260531025010",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/The-Rising-Appeal-of-Off-Plan-Properties-Why-Invest-Early",
+   "status": "ok",
+   "capture": "20260531025110",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/The-Rising-Demand-for-Holiday-Homes-Is-It-Worth-Investing",
+   "status": "ok",
+   "capture": "20260531025022",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Top-5-Destinations-for-a-Second-Home-A-Guide-to-Smart-Investments",
+   "status": "ok",
+   "capture": "20260531025032",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Trump-Tower-Jeddah-A-Legacy-of-Prestige-and-Power",
+   "status": "ok",
+   "capture": "20260531025157",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Whats-Next-for-DarGlobal-A-Sneak-Peek-into-Our-Upcoming-Projects",
+   "status": "ok",
+   "capture": "20260531025055",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Where-Prestige-Meets-Place-The-Ultimate-Guide-to-Real-Estate-Location-Value",
+   "status": "ok",
+   "capture": "20260531025210",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Why-Luxury-Real-Estate-Is-the-Safest-Investment-in-2025",
+   "status": "ok",
+   "capture": "20260531025023",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Why-Middle-Eastern-Real-Estate-Is-Booming-for-Foreign-Investors",
+   "status": "ok",
+   "capture": "20260531044002",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Why-Real-Estate-is-the-Best-Investment-in-a-Changing-World",
+   "status": "ok",
+   "capture": "20260531025059",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/Why-Saudi-Arabias-Luxury-Real-Estate-Market-Is-the-Investment-Opportunity-of-the-Decade",
+   "status": "ok",
+   "capture": "20260531025106",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/a-lifestyle-investment-luxury-living-at-trump-international-hotel-oman",
+   "status": "ok",
+   "capture": "20260531043450",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/aida-trump-international-hotel-redefining-luxury-hospitality",
+   "status": "ok",
+   "capture": "20260531042236",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/benahavis-luxury-villas-and-prime-real-estate-discover-your-perfect-investment-destination",
+   "status": "ok",
+   "capture": "20260531042620",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/best-cities-to-invest-in-real-estate-in-gulf",
+   "status": "ok",
+   "capture": "20260531042346",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/best-countries-luxury-real-estate-investment-2026",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/branded-real-estate-dubai",
+   "status": "ok",
+   "capture": "20260531044000",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/buying-luxury-villas-in-muscat-oman-your-gateway-to-arabian-pulence",
+   "status": "ok",
+   "capture": "20260531025006",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/buying-property-in-dubai",
+   "status": "ok",
+   "capture": "20260531042718",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/buying-property-in-oman-complete-guide",
+   "status": "ok",
+   "capture": "20260531042909",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/buying-property-in-oman-trends-predictions",
+   "status": "ok",
+   "capture": "20260531042230",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/buying-property-in-spain-complete-guide",
+   "status": "ok",
+   "capture": "20260531043808",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/can-foreigners-buy-property-in-qatar",
+   "status": "ok",
+   "capture": "20260531043037",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/can-foreigners-buy-property-in-saudi-arabia",
+   "status": "ok",
+   "capture": "20260531030824",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/can-foreigners-buy-property-uk-complete-guide",
+   "status": "ok",
+   "capture": "20260531043037",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/capital-growth-vs-rental-yield-in-luxury-real-estate",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/choosing-the-right-real-estate-developer-in-dubai-tips-for-finding-your-perfect-home",
+   "status": "ok",
+   "capture": "20260531025158",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/choosing_your_dream_lifestyle_in_oman",
+   "status": "ok",
+   "capture": "20260531042333",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/commercial-vs-residential-real-estate",
+   "status": "ok",
+   "capture": "20260531043041",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/cost-of-living-in-qatar-and-impact-on-real-estate-market",
+   "status": "ok",
+   "capture": "20260531043459",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/costa-del-sol-a-blend-of-culture-comfort",
+   "status": "ok",
+   "capture": "20260531042802",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/creating-luxury-living-beyond-the-ordinary",
+   "status": "ok",
+   "capture": "20260531025058",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/current-trends-in-omans-real-estate-market-what-investors-need-to-know",
+   "status": "ok",
+   "capture": "20260531043354",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/darglobal-and-dar-al-arkan-promoting-dual-listing-with-the-london-stock-exchange",
+   "status": "ok",
+   "capture": "20260531043141",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/defining-opulence-what-luxury-truly-means-in-todays-real-estate-market",
+   "status": "ok",
+   "capture": "20260531043953",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/discover-dg1-residences-luxury-living-in-the-heart-of-dubai",
+   "status": "ok",
+   "capture": "20260531025133",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/discover-luxury-villas-for-sale-in-costa-del-sol-and-tierra-viva",
+   "status": "ok",
+   "capture": "20260531025007",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/discover-the-best-of-ras-al-khaimah-5-top-attractions",
+   "status": "ok",
+   "capture": "20260531044121",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/discover-the-luxury-and-leisure-of-al-marjan-island-uae",
+   "status": "ok",
+   "capture": "20260531042804",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/discovering-omans-enchanting-blend-cultural-marvels-pristine-landscapes-and-a-gateway-to-cosmopolitan-living",
+   "status": "ok",
+   "capture": "20260531042805",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/do-you-pay-council-tax-on-empty-property",
+   "status": "ok",
+   "capture": "20260531043120",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/dubai-2040-smart-sustainable-city-roadmap",
+   "status": "ok",
+   "capture": "20260531042745",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/dubai-property-prices-trend-2025",
+   "status": "ok",
+   "capture": "20260531042350",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/dubai-real-estate-investment-guide",
+   "status": "ok",
+   "capture": "20260531043453",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/dubai-real-estate-market-trends-2025",
+   "status": "ok",
+   "capture": "20260531043453",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/dubai-real-estate-roi-in-2025",
+   "status": "ok",
+   "capture": "20260531043441",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/eco-friendly-architecture-and-luxury-living",
+   "status": "ok",
+   "capture": "20260531030904",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/eid-shopping-extravaganza-top-places-in-dubai-for-your-holiday-purchases",
+   "status": "ok",
+   "capture": "20260531025056",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/elegance-unveiled-discovering-the-timeless-charm-of-cortesin-spain",
+   "status": "ok",
+   "capture": "20260531042415",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/elevate-your-lifestyle-the-da-vinci-tower-interiors-by-pagani",
+   "status": "ok",
+   "capture": "20260531042441",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/embrace-the-best-of-london-living-discover-culture-in-luxury",
+   "status": "ok",
+   "capture": "20260531025044",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/exclusive-lifestyle-features-elevating-luxury-homes-with-private-amenities",
+   "status": "ok",
+   "capture": "20260531043134",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/experience-refined-tranquility-at-the-great-escape-2-in-aida-oman",
+   "status": "ok",
+   "capture": "20260531025050",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/experience-the-extraordinary-tierra-viva-launch-event-in-puerto-banus",
+   "status": "ok",
+   "capture": "20260531044133",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/experience-the-pinnacle-of-luxury-living-the-allure-of-dubai",
+   "status": "ok",
+   "capture": "20260531025158",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/experience-unmatched-luxury-at-the-weekend-in-doha-qatar",
+   "status": "ok",
+   "capture": "20260531043500",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/explore-natures-playground-dream-villa-for-sale-oman",
+   "status": "ok",
+   "capture": "20260531042438",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/exploring-dubais-art-scene-the-7-best-art-museums",
+   "status": "ok",
+   "capture": "20260531043735",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/exploring-spain’s-luxury-villa-market-uncover-hidden-gems-and-authentic-experiences-with-darglobal",
+   "status": "ok",
+   "capture": "20260531042700",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/exploring-the-best-villas-for-sale-in-spain-trends-and-opportunities-for-the-discerning-buyer",
+   "status": "ok",
+   "capture": "20260531042349",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/exploring-the-market-for-villas-for-sale-in-dubai-a-comprehensive-guide-for-discerning-investors",
+   "status": "ok",
+   "capture": "20260531025127",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/family-friendly-fun-in-dubai-your-ultimate-guide-to-a-memorable-saturday-afternoon",
+   "status": "ok",
+   "capture": "20260531043738",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/finding-your-dream-home-top-tips-for-buying-a-luxury-villa-for-sale",
+   "status": "ok",
+   "capture": "20260531025024",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/five-types-of-insurance-coverage-every-homeowner-needs",
+   "status": "ok",
+   "capture": "20260531044125",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/foreign-investment-in-saudi-arabia",
+   "status": "ok",
+   "capture": "20260531042411",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/freehold-vs-leasehold-dubai",
+   "status": "ok",
+   "capture": "20260531044134",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/from-vision-to-reality-the-most-anticipated-real-estate-projects-in-muscat",
+   "status": "ok",
+   "capture": "20260531043051",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/future-of-branded-residences",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/future-of-real-estate-ksa",
+   "status": "ok",
+   "capture": "20260531042320",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/futuristic-splendor-navigating-the-architectural-marvels-of-doha-qatar",
+   "status": "ok",
+   "capture": "20260531042702",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/golden-visa-countries-for-real-estate-roi",
+   "status": "ok",
+   "capture": "20260531030922",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/golf-lifestyle-in-middle-east",
+   "status": "ok",
+   "capture": "20260531042457",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/high-roi-and-roe-real-estate-co-branding-through-the-lens-of-ziad-el-chaar-ceo-of-darglobal",
+   "status": "ok",
+   "capture": "20260531042701",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/holiday-home-investment-in-oman",
+   "status": "ok",
+   "capture": "20260531042512",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/holiday-home-investment-in-spain",
+   "status": "ok",
+   "capture": "20260531042750",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/home-buying-in-the-digital-age-trends-and-tips-for-remote-professionals",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/hotel-chains-meet-real-estate-a-new-era-for-muscats-property-market",
+   "status": "ok",
+   "capture": "20260531025117",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-international-investors-buy-luxury-property-with-confidence",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-luxury-real-estate-supports-global-mobility-and-residency",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-to-buy-a-villa-in-dubai",
+   "status": "ok",
+   "capture": "20260531030812",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-to-buy-luxury-real-estate",
+   "status": "ok",
+   "capture": "20260531030817",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-to-buy-property-in-london",
+   "status": "ok",
+   "capture": "20260531030928",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-to-buy-property-in-spain-complete-guide",
+   "status": "ok",
+   "capture": "20260531030739",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-to-design-luxury-homes-2025",
+   "status": "ok",
+   "capture": "20260531030744",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-to-evaluate-a-luxury-property-before-you-invest",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-to-get-into-real-estate-in-dubai",
+   "status": "ok",
+   "capture": "20260531030745",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-to-get-residence-visa-dubai-2025",
+   "status": "ok",
+   "capture": "20260531030935",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-to-invest-in-dubai-real-estate",
+   "status": "ok",
+   "capture": "20260531030927",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-to-invest-in-housing",
+   "status": "ok",
+   "capture": "20260531030930",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-to-invest-in-property-2025",
+   "status": "ok",
+   "capture": "20260531030903",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/how-to-invest-in-uk-property",
+   "status": "ok",
+   "capture": "20260531030938",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/impact-of-global-events-on-international-real-estate-market",
+   "status": "ok",
+   "capture": "20260531042915",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/impact-of-tourism-on-saudi-arabia-real-estate-market",
+   "status": "ok",
+   "capture": "20260531043216",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/impact-of-vision-2030-on-riyadh-real-estate",
+   "status": "ok",
+   "capture": "20260531042411",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/inside-dubai-priciest-listing-exploring-the-most-exclusive-apartment-for-sale-in-2024",
+   "status": "ok",
+   "capture": "20260531025152",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/insignia-cards-limited-and-darglobal-unite-to-unlock-extraordinary-possibilities",
+   "status": "ok",
+   "capture": "20260531044123",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/invest-in-luxury-and-nature-discover-the-beauty-of-bosnia-and-herzegovina-with-sidra",
+   "status": "ok",
+   "capture": "20260531025051",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/investing-in-hotel-apartments-in-dubai",
+   "status": "ok",
+   "capture": "20260531030817",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/investing-in-jumeirah-golf-estates",
+   "status": "ok",
+   "capture": "20260531043140",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/investing-in-london-properties-a-strategic-analysis-for-2024",
+   "status": "ok",
+   "capture": "20260531025102",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/investing-in-marbella-luxury-villas-timeless-elegance-lucrative-returns",
+   "status": "ok",
+   "capture": "20260531043351",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/investing-in-oman-opportunities-and-benefits",
+   "status": "ok",
+   "capture": "20260531043900",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/investing-in-qatar-is-now-the-right-time-to-enter-the-real-estate-market",
+   "status": "ok",
+   "capture": "20260531042641",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/investing-in-the-jewel-of-the-middle-east-is-oman-the-next-big-real-estate-opportunity",
+   "status": "ok",
+   "capture": "20260531042334",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/investment-in-saudi-real-estate",
+   "status": "ok",
+   "capture": "20260531044005",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/investment-spotlight-assessing-the-viability-of-dubai-real-estate-in-2024",
+   "status": "ok",
+   "capture": "20260531042701",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/is-buying-a-home-a-good-investment",
+   "status": "ok",
+   "capture": "20260531030929",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/is-buying-a-second-home-still-a-smart-investment",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/key-factors-driving-the-sale-of-villas-in-oman-unveiling-the-sultanate's-irresistible-allure",
+   "status": "ok",
+   "capture": "20260531025149",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/ksa-real-estate-market-boom-or-bubble",
+   "status": "ok",
+   "capture": "20260531042506",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/les-vagues-where-couture-meets-comfort-elie-saabs-visionary-real-estate-venture-in-qatar-ues-elie-saabs-visionary-real-estate-venture-in-qatar",
+   "status": "ok",
+   "capture": "20260531025156",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/london-a-city-of-unmatched-diversity-and-opportunity",
+   "status": "ok",
+   "capture": "20260531025207",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/londons-prime-real-estate-where-to-invest-in-2024",
+   "status": "ok",
+   "capture": "20260531043050",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-amenities-in-spain-branded-villas",
+   "status": "ok",
+   "capture": "20260531042204",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-apartments-in-dubai-the-epitome-of-elevated-living-and-astute-investment",
+   "status": "ok",
+   "capture": "20260531025037",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-living-and-smart-investments-exploring-dubais-real-estate-landscape",
+   "status": "ok",
+   "capture": "20260531025146",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-living-in-oman-s-enchanting-capital",
+   "status": "ok",
+   "capture": "20260531025152",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-living-qatar",
+   "status": "ok",
+   "capture": "20260531042420",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-real-estate-developers-in-dubai-pioneering-a-future-of-opulence-and-innovation",
+   "status": "ok",
+   "capture": "20260531025114",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-real-estate-developers-in-spain-crafting-dreams-in-the-heart-of-the-mediterranean",
+   "status": "ok",
+   "capture": "20260531025120",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-real-estate-investment-2026",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-real-estate-investment-in-trump-tower-dubai",
+   "status": "ok",
+   "capture": "20260531043349",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-real-estate-long-term-wealth",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-real-estate-market-analysis-forecasting-trends-and-opportunities",
+   "status": "ok",
+   "capture": "20260531025151",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-real-estate-trends-2026",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-vacation-homes-finding-your-perfect-retreat-in-paradise",
+   "status": "ok",
+   "capture": "20260531044142",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-villas-for-sale-in-dubai-gateway-to-world-of-experiences",
+   "status": "ok",
+   "capture": "20260531043439",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-villas-for-sale-in-marbella-a-Buyer-s-guide",
+   "status": "ok",
+   "capture": "20260531025107",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-villas-for-sale-in-marbella-a-buyer's-guide-to-sun-kissed-opulence",
+   "status": "ok",
+   "capture": "20260531025035",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-villas-in-spain-what-to-look-for-and-where-to-invest",
+   "status": "ok",
+   "capture": "20260531042620",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-waterfront-properties",
+   "status": "ok",
+   "capture": "20260531042914",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-waterfront-properties-what-makes-them-so-valuable",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/making-history-with-omans-real-estate-market",
+   "status": "ok",
+   "capture": "20260531025103",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/malaga-vs-marbella-for-real-estate-investment",
+   "status": "ok",
+   "capture": "20260531042748",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/marbella's-magnetic-charm-why-it's-the-epicentre-for-luxurious-villa-living",
+   "status": "ok",
+   "capture": "20260531025123",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/marbella-beyond-the-beach-a-cultural-and-culinary-journey-from-your-luxury-villa",
+   "status": "ok",
+   "capture": "20260531025154",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/marbella-your-year-round-luxury-retreat-with-darglobal",
+   "status": "ok",
+   "capture": "20260531025117",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/marea-a-jewel-amidst-the-greens-your-gateway-to-luxury-living-in-cortesin-spain",
+   "status": "ok",
+   "capture": "20260531042328",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/market-insights-luxury-villas-for-sale-in-marbella-a-deep-dive-into-the-trends-and-opportunities",
+   "status": "ok",
+   "capture": "20260531025121",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/modern-architecture-in-dubai",
+   "status": "ok",
+   "capture": "20260531042307",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/muscat's-rise-as-a-luxury-haven-the-investment-opportunities-and-lifestyle-benefits-of-luxury-villas-in-oman",
+   "status": "ok",
+   "capture": "20260531025203",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/oasis-of-opulence-exploring-the-luxurious-lifestyles-of-muscat-oman",
+   "status": "ok",
+   "capture": "20260531042500",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/off-plan-property-investment-in-dubai",
+   "status": "ok",
+   "capture": "20260531042913",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/oman's-luxury-villas-for-sale-an-investment-overview-for-the-discerning-buyer",
+   "status": "ok",
+   "capture": "20260531025136",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/oman-vision-2040",
+   "status": "ok",
+   "capture": "20260531042230",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/plano-group-top-seller-aida-oman-darglobal-success-story",
+   "status": "ok",
+   "capture": "20260531025113",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/premier-properties-exploring-marbellas-most-luxurious-neighborhoods",
+   "status": "ok",
+   "capture": "20260531043132",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/property-investment-in-oman",
+   "status": "ok",
+   "capture": "20260531042928",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/property-investment-in-qatar-for-non-qataris",
+   "status": "ok",
+   "capture": "20260531042711",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/property-transfer-vs-title-deed-differences",
+   "status": "ok",
+   "capture": "20260531042206",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/proptech-and-impact-on-real-estate-market",
+   "status": "ok",
+   "capture": "20260531042823",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/qatar-crown-jewel-a-look-inside-the-hottest-property-on-the-market",
+   "status": "ok",
+   "capture": "20260531025209",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/qatars-vision-2030-opportunities-and-advantages-for-real-estate-investor",
+   "status": "ok",
+   "capture": "20260531025206",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/real-estate-cycle-for-smarter-investing",
+   "status": "ok",
+   "capture": "20260531042241",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/real-estate-forecast-next-5-years-dubai",
+   "status": "ok",
+   "capture": "20260531043052",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/real-estate-investment-in-qatar",
+   "status": "ok",
+   "capture": "20260531042710",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/real-estate-investment-in-rak",
+   "status": "ok",
+   "capture": "20260531043729",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/real-estate-investment-international-residency",
+   "status": "ok",
+   "capture": "20260531030821",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/real-estate-market-in-middle-east",
+   "status": "ok",
+   "capture": "20260531044002",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/real-estate-market-trends-in-emerging-global-cities",
+   "status": "ok",
+   "capture": "20260531042511",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/redefining-luxury-real-estate-development-for-the-discerning-buyer",
+   "status": "ok",
+   "capture": "20260531044122",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/redefining-real-estate-development-for-the-discerning-buyer",
+   "status": "ok",
+   "capture": "20260531042706",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/remote-work-lifestyle-aida",
+   "status": "ok",
+   "capture": "20260531042621",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/rental-property-investing-guide",
+   "status": "ok",
+   "capture": "20260531042927",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/renting-vs-buying-in-qatar",
+   "status": "ok",
+   "capture": "20260531043500",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/rise-of-reit-in-dubai",
+   "status": "ok",
+   "capture": "20260531043424",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/rise-of-smart-homes-in-saudi-arabia",
+   "status": "ok",
+   "capture": "20260531042321",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/role-of-art-collectibles-enhancing-luxury-home-interior",
+   "status": "ok",
+   "capture": "20260531043400",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/runway-residences-fashion-brands-redefining-luxury-living-elie-saab-missoni-and-dg",
+   "status": "ok",
+   "capture": "20260531025138",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/saudi-arabia-smart-cities",
+   "status": "ok",
+   "capture": "20260531042320",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/second-home-in-spain",
+   "status": "ok",
+   "capture": "20260531042200",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/should-i-invest-in-real-estate",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/smart-home-interior-design-2025",
+   "status": "ok",
+   "capture": "20260531030828",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/smart-home-technology-2025",
+   "status": "ok",
+   "capture": "20260531030806",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/smart-home-technology-with-luxury-living",
+   "status": "ok",
+   "capture": "20260531030925",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/spain's-top-luxury-villas-to-buy-your-guide-to-securing-a-slice-of-paradise",
+   "status": "ok",
+   "capture": "20260531025145",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/spain-and-oman-two-of-the-best-places-to-buy-a-villa-for-lavish-living",
+   "status": "ok",
+   "capture": "20260531025030",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/spotlight-on-up-and-coming-luxury-market-in-oman",
+   "status": "ok",
+   "capture": "20260531043403",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/staying-up-to-speed-on-the-latest-residential-design-trends-for-2024",
+   "status": "ok",
+   "capture": "20260531043436",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/synergy-in-style-exploring-collaborations-between-luxury-brands-and-real-estate",
+   "status": "ok",
+   "capture": "20260531043435",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/tech-meets-luxury-smart-homes-redefining-opulent-living",
+   "status": "ok",
+   "capture": "20260531025209",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-allure-of-londons-luxury-real-estate",
+   "status": "ok",
+   "capture": "20260531025031",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-appeal-of-villas-for-sale-in-marbella-what-buyers-should-know",
+   "status": "ok",
+   "capture": "20260531025055",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-astera-redefining-luxury-living-with-aston-martin-interiors",
+   "status": "ok",
+   "capture": "20260531025118",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-best-dubai-neighborhoods-for -luxury-villas-your-guide-to-opulent-living-in-the-city-of-dreams",
+   "status": "ok",
+   "capture": "20260531042514",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-booming-real-estate-market-in-oman-a-lucrative-opportunity-for-investors-and-homeowners",
+   "status": "ok",
+   "capture": "20251006084631",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-complete-guide-to-investing-in-dubai-off-plan-properties",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-impact-of-location-on-luxury-real-estate-values-factors-to-consider",
+   "status": "ok",
+   "capture": "20260531042450",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-mulliner-restoring-londons-elegance-on-old-park-lane",
+   "status": "ok",
+   "capture": "20260531042451",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-new-work-from-paradise-trend-luxury-villas-in-oman-as-remote-work-havens",
+   "status": "ok",
+   "capture": "20260531025127",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-rise-of-luxury-real-estate-in-spain-analyzing-investment-opportunities",
+   "status": "ok",
+   "capture": "20260531043737",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-trump-golf-villas-luxury-living-with-a-view-at-aida-oman",
+   "status": "ok",
+   "capture": "20260531042405",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-ultimate-muscat,-oman-luxury-villa-buying-experience",
+   "status": "ok",
+   "capture": "20260531043456",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-ultimate-muscat-oman-luxury-villa-buying-experience",
+   "status": "ok",
+   "capture": "20260531042451",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/tierra-viva-an-example-of-how-the-automotive-industry-is-shaping-luxury-real-estate",
+   "status": "ok",
+   "capture": "20260531025135",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/top-branded-residences-in-downtown-dubai",
+   "status": "ok",
+   "capture": "20260531042310",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/top-considerations-when-buying-a-luxury-residence-in -dubai-a-comprehensive-guide-for-discerning-investors",
+   "status": "ok",
+   "capture": "20260531043446",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/top-features-high-net-worth-buyerslook",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/top-luxury-gated-communities",
+   "status": "ok",
+   "capture": "20260531042458",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/trains-are-coming-gcc-next-connectivity-leap",
+   "status": "ok",
+   "capture": "20260531025132",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/trump-lnternational-debuts-in-aida-oman-a-landmark-in-luxury",
+   "status": "ok",
+   "capture": "20260531025159",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/types-of-lighting-in-interior-design",
+   "status": "ok",
+   "capture": "20260531042236",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/unlocking-the-door-to-your-dream-home-essential-financial-steps-for-homebuyers",
+   "status": "ok",
+   "capture": "20260531044126",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/unlocking-the-doors-to-tax-free-real-estate-investment-in-oman",
+   "status": "ok",
+   "capture": "20260531043318",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/unravelling-the-luxuries-of-costa-del-sol-best-things-to-do-places-to-visit",
+   "status": "ok",
+   "capture": "20260531043434",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/unveiling the-astera-where-luxury-real-estate-meets-automotive-excellence",
+   "status": "ok",
+   "capture": "20260531025105",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/unveiling-qatars-luxurious-investment-oasis-your-gateway-to-opulence",
+   "status": "ok",
+   "capture": "20260531042450",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/unveiling-utopia-residences-paganis-automotive-artistry-meets-unparalleled-luxury",
+   "status": "ok",
+   "capture": "20260531043736",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/unwind-and-connect-at-dg1-residences-a-lifestyle-beyond-compare",
+   "status": "ok",
+   "capture": "20250423104651",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/villa-for-sale-in-dubai-s-most-desirable-locations",
+   "status": "ok",
+   "capture": "20260531025134",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/villas-in-spain-to-buy-unlocking-the-hidden-gems-of-authentic-luxury-living",
+   "status": "ok",
+   "capture": "20260531025018",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/wellness-real-estate-guide",
+   "status": "ok",
+   "capture": "20260531044020",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/what-is-a-golden-visa-in-spain",
+   "status": "ok",
+   "capture": "20260531030937",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/what-is-property-insurance-premium",
+   "status": "ok",
+   "capture": "20260531030829",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/what-is-waterfront-property",
+   "status": "ok",
+   "capture": "20260531030843",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/what-makes-a-luxury-real-estate-developer-worth-investing-with",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/broker-contest-terms-conditions",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/campaigns",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/careers",
+   "status": "ok",
+   "capture": "20250730152757",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/commercial",
+   "status": "ok",
+   "capture": "20260531032521",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/d-villas-at-jge",
+   "status": "ok",
+   "capture": "20260531030932",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/davinci-tower-by-pagani",
+   "status": "ok",
+   "capture": "20260531042758",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/development-management",
+   "status": "ok",
+   "capture": "20260531025108",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/dg-circle",
+   "status": "ok",
+   "capture": "20260531043910",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/dg1",
+   "status": "ok",
+   "capture": "20260531042758",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/exclusive-membership",
+   "status": "ok",
+   "capture": "20260531043633",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/exclusive-plots",
+   "status": "ok",
+   "capture": "20260531043940",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/fairway-villas-aida-oman",
+   "status": "ok",
+   "capture": "20260531031030",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/faq",
+   "status": "ok",
+   "capture": "20260531025009",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/get-in-touch",
+   "status": "ok",
+   "capture": "20260531043316",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/hospitality",
+   "status": "ok",
+   "capture": "20260531025204",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights",
+   "status": "ok",
+   "capture": "20260531025047",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/149-old-park-lane-luxury-london",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/aston-martin-interiors-apartments-ras-al-khaimah",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/automotive-designed-vacation-homes-benahavis",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/capital-appreciation-developer-ras-al-khaimah",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/crypto-tokenized-luxury-developer",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/elie-saab-branded-apartments-qatar",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/global-citizenship-dual-residency-communities",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/lamborghini-inspired-villas-spain",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/lse-listed-developer-dubai",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/luxury-golf-villas-muscat-branded",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/luxury-second-homes-saudi-residency",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/missoni-branded-residences-costa-del-sol",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/mouawad-branded-villas-riyadh",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/oman-gated-communities-high-altitude",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/oman-golden-visa-sea-view-homes",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/pagani-interiors-villas-dubai",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/premiere-architectural-landmarks-dubai",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/safe-luxury-developer-oman",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/supercar-designed-penthouses-uae",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/tokenized-fractional-luxury-hotels-me",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/transparent-financials-dubai-off-plan",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/trump-international-hotel-dubai",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/trump-partnered-projects-oman",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/twisting-residential-towers-dubai-business-bay",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights/w-residences-downtown-dubai",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insignia",
+   "status": "ok",
+   "capture": "20260531032836",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/internships",
+   "status": "ok",
+   "capture": "20260531025100",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/invest-in-aida",
+   "status": "ok",
+   "capture": "20260531043333",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/investor",
+   "status": "ok",
+   "capture": "20260531043429",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/landing-page",
+   "status": "ok",
+   "capture": "20260531033112",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/landing-page/aida",
+   "status": "ok",
+   "capture": "20260531045055",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/les-vagues",
+   "status": "ok",
+   "capture": "20260531042225",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/live-all-in",
+   "status": "ok",
+   "capture": "20260531030218",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/luxury-golf-communities",
+   "status": "ok",
+   "capture": "20260531025119",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/marea",
+   "status": "ok",
+   "capture": "20260531045103",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/marriott-residences-aida-oman",
+   "status": "ok",
+   "capture": "20260531030750",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/neptune",
+   "status": "ok",
+   "capture": "20260531030755",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/one-of-one",
+   "status": "ok",
+   "capture": "20260531033258",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/one-of-one/THE-ALBERT-HALL-MANSION",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/one-of-one/fendi-casa-azure-oceanfront-villas",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/one-of-one/one-of-one-unlisted-by-pagani",
+   "status": "ok",
+   "capture": "20260531032910",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/one-of-one/painite-villas-design-inspired-by-Automobili-Lamborghini",
+   "status": "ok",
+   "capture": "20260531030844",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/one-of-one/project-pagani",
+   "status": "ok",
+   "capture": "20260531031100",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/one-of-one/top-of-the-astera",
+   "status": "ok",
+   "capture": "20260531031115",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/one-of-one/trump-penthouse",
+   "status": "ok",
+   "capture": "20260531030223",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/partners",
+   "status": "ok",
+   "capture": "20250320051953",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/partners/aston-martin",
+   "status": "ok",
+   "capture": "20260531034731",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/partners/elie-saab",
+   "status": "ok",
+   "capture": "20260531030929",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/partners/fendi-casa",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/partners/lamborghini",
+   "status": "ok",
+   "capture": "20260531030822",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/partners/marriott-residences-aida-oman",
+   "status": "ok",
+   "capture": "20260531030747",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/partners/missoni",
+   "status": "ok",
+   "capture": "20260531040107",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/partners/mouawad",
+   "status": "ok",
+   "capture": "20260531042515",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/partners/pagani",
+   "status": "ok",
+   "capture": "20260531030917",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/partners/paramount",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/partners/the-trump-organization",
+   "status": "ok",
+   "capture": "20260531030811",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/partners/w-hotels",
+   "status": "ok",
+   "capture": "20260531034242",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/pre-launch-trump-jeddah-tower",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press",
+   "status": "ok",
+   "capture": "20260531025634",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/DARGLOBAL-APPOINTS-ROTHSCHILD-CO-TO-EXPLORE-FURTHER-GROWTH-OPPORTUNITIES-IN-LONDON-AND-SAUDI-ARABIA-MARKETS",
+   "status": "ok",
+   "capture": "20260531043730",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/Dar Global-Kicks-Off-Construction-at-The-Astera-Interiors-by Aston-Martin-with-the-Appointment-of-Stromek",
+   "status": "ok",
+   "capture": "20260531025029",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/Dar-Global-advances-construction-at-Tierra-Viva-its-first-European-luxury-development-with-Automobili-Lamborghini",
+   "status": "ok",
+   "capture": "20260531035900",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/Dar-Global-and-The-Trump-Organization-Expand-Collaboration-with-the-Launch-of-SAR-2-Billion-Trump-Tower-to-Tranform-Jeddah-Skyline",
+   "status": "ok",
+   "capture": "20260531025059",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/Dar-Global-completes-sale-of-historic-149-Old-Park-Lane-marketed-at-25mln",
+   "status": "ok",
+   "capture": "20260531044203",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/Dar-Global-sets-a-new-benchmark-in-luxury-hospitality-with-the-launch-of-the-500ml-Trump-International-Oman-in-AIDA",
+   "status": "ok",
+   "capture": "20260531032026",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/DarGlobal-PLC-appoints-David-Weinreb-as-Chairman",
+   "status": "ok",
+   "capture": "20260531042129",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/DarGlobal-appoints-China-Tiesiju-Civil-Engineering-Group-Co-LTD-a-the-main-contractor-for-DG1-project-in-Business-Bay-Dubai",
+   "status": "ok",
+   "capture": "20260531043421",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/DarGlobal–crafts–an–exceptional–residential–experience–with–the–launch–of–exclusive–DG–Villas–at–Jumeirah–Golf–Estates",
+   "status": "ok",
+   "capture": "20260531025128",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/LET-IT-RAIN-DIAMONDS-DAR-GLOBAL-AND-MOUAWAD-HIGH-JEWELLERY-HOUSE-UNVEIL-SAR-880-MILLION-LANDMARK-RESIDENTIAL-PROJECT",
+   "status": "ok",
+   "capture": "20260531031019",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-and-omran-group-announce-partnership-to-develop-aida-overlooking-the-sea-of-oman",
+   "status": "ok",
+   "capture": "20260531025139",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-and-pagani-automobili-give-customers-a-glimpse-of-the-worlds-first-ever-pagani-inspired-living-space",
+   "status": "ok",
+   "capture": "20260531035126",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-and-qetaifan-projects-unveil-premium-sea-front-residences-with-interiors-designed-by-elie-saab-at-expo-2020-dubai",
+   "status": "ok",
+   "capture": "20260531025024",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-and-qetaifan-projects-unveil-premium-sea-front-residences-with-interiors-designed-by-elie-saab-in-qetaifan-island-north-qatar",
+   "status": "ok",
+   "capture": "20260531034044",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-commences-construction-of-the-sold-out-w-residences-in-downtown-dubai",
+   "status": "ok",
+   "capture": "20260531025115",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-global-launches-sales-of-the-most-premium-residential-address-in-qatar-les-vagues-by-elie-saab-with-views-of-lusail-skyline-and-the-sea-at-qetaifan-island-north",
+   "status": "ok",
+   "capture": "20260531034049",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-introduces-trump-signature-villas-hotel-and-golf-course-at-its-hilltop-project-aida-in-muscat-oman",
+   "status": "ok",
+   "capture": "20260531032031",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-opens-office-in-china-in-a-bid-to-usher-in-global-growth",
+   "status": "ok",
+   "capture": "20260531025200",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-reveals-w-residences-dubai-downtown-overlooking-dubais-burj-khalifa-and-dubai-fountain",
+   "status": "ok",
+   "capture": "20260531034227",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-starts-work-on-sidra-the-largest-master-development-in-bosnia-and-the-balkans",
+   "status": "ok",
+   "capture": "20260531025109",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-succeeds-in-the-listing-of-its-international-arm-dar-global-on-the-london-stock-exchange-with-a-valuation-of-2250000000-saudi-riyals",
+   "status": "ok",
+   "capture": "20260531025154",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-teams-with-missoni-to-deliver-the-exclusive-urban-oasis-water-front-residential-tower-in-dubai",
+   "status": "ok",
+   "capture": "20260531040108",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-teams-with-pagani-automobili-to-unveil-an-ultra-exclusive-residential-tower-in-dubai",
+   "status": "ok",
+   "capture": "20260531025106",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-al-arkan-tops-out-its-urban-oasis-by-missoni-residential-tower-in-dubai-at-34-stories",
+   "status": "ok",
+   "capture": "20260531040050",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-17-3-roe-2025-strong-market-position",
+   "status": "ok",
+   "capture": "20260531031858",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-appoints-gulf-asia-contracting-for-trump-international-hotel-tower-dubai",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-awards-sar-338-million-rayana-master-community-infrastructure-contract-compass-bin-omairah-wadi-safar-diriyah-riyadh",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-awards-shapoorji-pallonji-mideast-l-l-c-the-fit-out-works-for-da-vinci-tower-by-pagani-in-dubai-for-116000000-aed",
+   "status": "ok",
+   "capture": "20260531035120",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-capital-partners-targets-high-value-real-estate-opportunities-dubai",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-delivers-66-percent-revenue-growth-hy-2026-portfolio-gdv-reaches-23-billion",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-expands-saudi-arabia-portfolio-with-new-jeddah-development-valued-at-sar-1-billion",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-introduces-its-unrivalled-debut-luxury-hospitality-project-in-the-maldives-in-partnership-with-dolce-gabbana",
+   "status": "ok",
+   "capture": "20250624165137",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-introduces-stunning-beach-residence-the-astera-interiors-by-aston-martin",
+   "status": "ok",
+   "capture": "20260531034727",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-lamborghini-lounge-porto-cervo-summer",
+   "status": "ok",
+   "capture": "20260531035904",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-launches-sales-for-aida-a-one-of-a-kind-mixed-use-gatedcommunity-featuring-trump-golf-course-and-the-ultimate-in-luxurygolf-residential-and-hospitality-experiences-in-muscat-oman-thene",
+   "status": "ok",
+   "capture": "20260531032031",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-opens-sales-trump-villas-simaisma-qatar-unprecedented-interest",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-trump-organization-launch-trump-hotel-tower-dubai",
+   "status": "ok",
+   "capture": "20260531025136",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-global-trump-organization-usd-1bn-trump-plaza-jeddah",
+   "status": "ok",
+   "capture": "20260726232231",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-globals-agents-event-paves-the-way-for-a-spectacular-debut-in-spanish-real-estate",
+   "status": "ok",
+   "capture": "20260531042307",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/dar-globals-expansion-into-saudi-arabia-to-benefit-from-growing-international-interest-in-the-kingdoms-real-estate-market",
+   "status": "ok",
+   "capture": "20260531043308",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-acquires-prime-plot-jeddah-landmark-mixed-use-scheme",
+   "status": "ok",
+   "capture": "20260531040907",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-announces-partnership-with-aston-martin-to-deliver-stunning-beachfront-residences-in-ras-al-khaimah-united-arab-emirates",
+   "status": "ok",
+   "capture": "20260531034728",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-appoints-acc-for-main-works-as-trump-tower-jeddah-rises",
+   "status": "ok",
+   "capture": "20260531040610",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-appoints-al-adrak-for-great-escape-apartments-and-aida-phase-1-villas-oman",
+   "status": "ok",
+   "capture": "20251006084449",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-appoints-al-dahlawi-contracting-for-amaya-project-trump-plaza-jeddah",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-appoints-ene-construccion-as-main-contractor-for-tierra-viva-luxury-villas",
+   "status": "ok",
+   "capture": "20251006072631",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-art-district-real-estate-mad-muscat-marine-art-digital-district",
+   "status": "ok",
+   "capture": "20260531040910",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-awards-enabling-works-contract-trump-international-hotel-tower-dubai-edrafor-emirates",
+   "status": "ok",
+   "capture": "20260531025102",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-awards-main-contract-astera-aston-martin-gulf-asia",
+   "status": "ok",
+   "capture": "20260531025100",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-awards-the-main-works-of-w-residences-in-downtown-dubai-for-aed273000000-aed",
+   "status": "ok",
+   "capture": "20260531025128",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-awards-top-agents-propelling-real-estate-sector-in-dubai",
+   "status": "ok",
+   "capture": "20260531043950",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-begins-handover-of-iconic-davinci-tower-by-pagani-automobili",
+   "status": "ok",
+   "capture": "20260531044011",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-breaks-ground-on-trump-tower-jeddah",
+   "status": "ok",
+   "capture": "20260531025016",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-debuts-nickelodeon-hotels-resorts-oman-in-aida-setting-new-luxury-family-standard",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-fendi-casa-announce-azure-oceanfront-villas-oman",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-first-saudi-company-equity-shares-london-stock-exchange",
+   "status": "ok",
+   "capture": "20260531042429",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-five-years-global-expansion-23bn-development-portfolio-future-vision",
+   "status": "archived_copy_is_bot_challenge"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-gdv-growth-67-12-5bln-new-saudi-developments-financial-services",
+   "status": "ok",
+   "capture": "20260531043958",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-joins-hands-with-spanish-council-lighting-up-abu-dhabi-in-celebratory-colors-of-spains-national-day",
+   "status": "ok",
+   "capture": "20260531043919",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-launches-trump-plaza-jeddah-second-collaboration",
+   "status": "ok",
+   "capture": "20260531043605",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-london-stock-exchange-opening-bell-live-all-in-launch",
+   "status": "ok",
+   "capture": "20260531035337",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-partners-with-wasalt-to-advertise-trump-tower-jeddah",
+   "status": "ok",
+   "capture": "20260531043410",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-strengthens-china-partnerships-saudi-real-estate-global-investors",
+   "status": "ok",
+   "capture": "20260531025054",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/darglobal-trump-international-hotel-maldives-tokenized-hotel-development",
+   "status": "ok",
+   "capture": "20260531040605",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/emirates-nbd-usd-250m-syndicated-loan-dar-global-expansion-uae",
+   "status": "ok",
+   "capture": "20260531025018",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/exceptional-luxury-living-redefined-darglobal-and-automobili-lamborghini-present-tierra-viva-villas-in-the-highly-exclusive-benahavis",
+   "status": "ok",
+   "capture": "20260531035905",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/helping-saudi-homegrown-brands-list-in-london",
+   "status": "ok",
+   "capture": "20260531042645",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/missoni-and-dar-global-launch-residential-development-project-in-southern-spain",
+   "status": "ok",
+   "capture": "20260531040113",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/missoni-and-dar-global-launch-residential-development-project-in-southern-spain-duplicate-27740",
+   "status": "ok",
+   "capture": "20260531043309",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/qatari-diar-darglobal-trump-international-golf-club-villas-simaisma",
+   "status": "ok",
+   "capture": "20260531025013",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/saudi-born-developer-dar-global-expands-project-pipeline-to-19-billion",
+   "status": "ok",
+   "capture": "20260531044144",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/press/world-liberty-financial-tokenizes-trump-international-hotel-maldives",
+   "status": "ok",
+   "capture": "20260531025148",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/privacy-policy",
+   "status": "ok",
+   "capture": "20251103092342",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects",
+   "status": "ok",
+   "capture": "20260531043955",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-oman",
+   "status": "ok",
+   "capture": "20260531034846",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-oman/apartments",
+   "status": "ok",
+   "capture": "20260531025109",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-oman/hotel-rooms",
+   "status": "ok",
+   "capture": "20260531025147",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-qatar",
+   "status": "ok",
+   "capture": "20260531041651",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-qatar/villas",
+   "status": "ok",
+   "capture": "20260531025200",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-saudi-arabia",
+   "status": "ok",
+   "capture": "20260531030825",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-saudi-arabia/apartments",
+   "status": "ok",
+   "capture": "20260531025144",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-saudi-arabia/villas",
+   "status": "ok",
+   "capture": "20260531025020",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-spain",
+   "status": "ok",
+   "capture": "20260531042305",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-spain/villas",
+   "status": "ok",
+   "capture": "20260531025208",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-uae",
+   "status": "ok",
+   "capture": "20260531040415",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-uae/villas",
+   "status": "ok",
+   "capture": "20260531025135",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-uk",
+   "status": "ok",
+   "capture": "20260531031202",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-uk/apartments",
+   "status": "ok",
+   "capture": "20260531025022",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/rayana/darglobal-mansions",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/rayana/darglobal-mansions-fendi-casa",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/rayana/trump-international-qatar",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/rayana/trump-mansions",
+   "status": "ok",
+   "capture": "20260531025021",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/sohar-islamic",
+   "status": "ok",
+   "capture": "20260531043929",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/success",
+   "status": "ok",
+   "capture": "20260531025157",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/terms-conditions",
+   "status": "ok",
+   "capture": "20260531035914",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/terms-of-uses",
+   "status": "ok",
+   "capture": "20260531040603",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/thank-you",
+   "status": "ok",
+   "capture": "20260531025042",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/the-astera",
+   "status": "ok",
+   "capture": "20260531030912",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/the-great-escape-1-aida-oman",
+   "status": "ok",
+   "capture": "20260531031921",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/the-great-escape-2-aida-oman",
+   "status": "ok",
+   "capture": "20260531031830",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/the-mulliner",
+   "status": "ok",
+   "capture": "20260531043038",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/tierra-viva",
+   "status": "ok",
+   "capture": "20260531042414",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/tokenization",
+   "status": "ok",
+   "capture": "20260531025049",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/trump-international-hotel-and-tower-dubai",
+   "status": "ok",
+   "capture": "20260531040120",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/trump-plaza/executive-residences",
+   "status": "ok",
+   "capture": "20260531025012",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/trump-plaza/park-residences",
+   "status": "ok",
+   "capture": "20260531043819",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/trump-tower-jeddah",
+   "status": "ok",
+   "capture": "20260531030826",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/urban-oasis-by-missoni",
+   "status": "ok",
+   "capture": "20260531042759",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/w-residences",
+   "status": "ok",
+   "capture": "20260531030938",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/why-invest",
+   "status": "ok",
+   "capture": "20260531043055",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/win-a-trip-to-dubai",
+   "status": "ok",
+   "capture": "20260531040858",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/",
+   "status": "ok",
+   "capture": "20261009182701",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/",
+   "status": "ok",
+   "capture": "20260617012047",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/properties-for-rent-in-dammam",
+   "status": "ok",
+   "capture": "20260609212354",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/properties-for-rent-in-jeddah",
+   "status": "ok",
+   "capture": "20260608203002",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/properties-for-rent-in-riyadh",
+   "status": "ok",
+   "capture": "20250909140745",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/properties-for-sale-in-dammam",
+   "status": "ok",
+   "capture": "20250917013605",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/properties-for-sale-in-jeddah",
+   "status": "ok",
+   "capture": "20251112043428",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/properties-for-sale-in-khobar",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/properties-for-sale-in-madinah",
+   "status": "ok",
+   "capture": "20251015001045",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/properties-for-sale-in-makkah",
+   "status": "ok",
+   "capture": "20250519214636",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/properties-for-sale-in-riyadh",
+   "status": "ok",
+   "capture": "20260715141245",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/s/masterplan",
+   "status": "ok",
+   "capture": "20260423061150",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/s/privacy-policy",
+   "status": "ok",
+   "capture": "20260520162206",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/s/terms-of-advertising",
+   "status": "ok",
+   "capture": "20251014235730",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/s/terms-of-use",
+   "status": "ok",
+   "capture": "20251011140512",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/s/wasalt-business",
+   "status": "archive_no_capture"
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/عقارات-للايجار-في-الرياض",
+   "status": "ok",
+   "capture": "20260423061132",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/عقارات-للايجار-في-جدة",
+   "status": "ok",
+   "capture": "20260715140729",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/عقارات-للبيع-في-الدمام",
+   "status": "ok",
+   "capture": "20260608203515",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/عقارات-للبيع-في-الرياض",
+   "status": "ok",
+   "capture": "20260423061134",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "archive_page",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/عقارات-للبيع-في-جدة",
+   "status": "ok",
+   "capture": "20260807115145",
+   "quarantined_lines": 0
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/amaya/amaya-plots",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/aston-martin-media",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/eid-shopping-extravaganza-top-places-in-dubai-for-your-holiday-purchases",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/hotel-chains-meet-real-estate-a-new-era-for-muscats-property-market",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/london-a-city-of-unmatched-diversity-and-opportunity",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/luxury-real-estate-market-analysis-forecasting-trends-and-opportunities",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/making-history-with-omans-real-estate-market",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/qatars-vision-2030-opportunities-and-advantages-for-real-estate-investor",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/the-allure-of-londons-luxury-real-estate",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/insights",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/landing-page",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-oman",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-oman/apartments",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-oman/hotel-rooms",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-qatar",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-qatar/villas",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-saudi-arabia",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-saudi-arabia/apartments",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-saudi-arabia/villas",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-spain",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-spain/villas",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-uae",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-uae/villas",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-uk",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/projects/properties-in-uk/apartments",
+   "status": "duplicate_content"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/rayana/trump-mansions",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/success",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/trump-plaza/executive-residences",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "finalise",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/trump-plaza/park-residences",
+   "status": "too_little_text"
+  },
+  {
+   "stage": "live_probe",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/",
+   "status": "blocked_bot_challenge",
+   "http_status": 200
+  },
+  {
+   "stage": "live_probe",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/llms.txt",
+   "status": "http_error",
+   "http_status": 404
+  },
+  {
+   "stage": "live_probe",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/en/",
+   "status": "blocked_bot_challenge",
+   "http_status": 403
+  },
+  {
+   "stage": "live_probe",
+   "site": "wasalt",
+   "url": "https://wasalt.sa/llms.txt",
+   "status": "blocked_bot_challenge",
+   "http_status": 403
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/what-makes-an-apartment-luxury",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/what-makes-great-luxury-real-estate-developer-key-traits-industry-leaders",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/where-luxury-meets-design-aston-martins-collaboration-with-darglobal-on-the-astera",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/where-to-invest-money-in-uae",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/why-aida-trump-international-cliff-villa-are-the-ultimate-luxury-getaway",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/why-branded-residences-outperform-traditional-luxury-homes",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/why-buy-property-in-spain",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/why-choose-marbella-top-luxury-villas-for-sale-in-this-idyllic-destination",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/why-dubai-is-the-perfect-place-to-buy-a-luxury-villa-unlocking-a-world-of-possibilities",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/why-dubai-remains-world-leading-luxury-property-market",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/why-invest-in-dubai-real-estate",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/why-invest-in-saudi-arabia",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/why-investors-are-eyeing-aida-as-omans-next-big-opportunity",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/why-luxury-real-estate-investment-portfolios",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/why-luxury-villas-in-oman-are-your-next-dream-destination",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/why-marbella-s-villas-for-sale-are-attracting-global-buyers",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/why-your-next-investment-should-be-in-oman",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/your-beginners-guide-to-real-estate-investment-in-oman",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/your-dream-villa-awaits-exclusive-luxury-villas-for-sale",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/your-dream-villa-awaits-exclusive-luxury-villas-for-sale-in-spain",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/your-guide-to-buying-luxury-villas-for-sale-in-dubai-top-areas-and-investment-tips",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/your-guide-to-choosing-the-right-luxury-real-estate-developer",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/blog/your-ultimate-guide-to-buying-luxury-villas-in-muscat",
+   "status": "skipped_page_cap"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/bookYourUnit",
+   "status": "skipped_transactional"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/internship-application",
+   "status": "skipped_transactional"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/landingpage/newStaticLandingPageHtml",
+   "status": "skipped_transactional"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/new-home-page",
+   "status": "skipped_transactional"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/pay-online",
+   "status": "skipped_transactional"
+  },
+  {
+   "stage": "select",
+   "site": "darglobal",
+   "url": "https://darglobal.co.uk/pay-online/status",
+   "status": "skipped_transactional"
+  },
+  {
+   "stage": "sitemap",
+   "url": "https://cdn.wasalt.sa/sitemap/category_sitemap_en_sa.xml.gz",
+   "status": "ok",
+   "entries": 8330
+  },
+  {
+   "stage": "sitemap",
+   "url": "https://cdn.wasalt.sa/sitemap/product_sitemap_en_sa.xml.gz",
+   "status": "ok",
+   "entries": 60000
+  },
+  {
+   "stage": "sitemap",
+   "url": "https://cdn.wasalt.sa/sitemap/rental_pdp_sitemap_en_sa.xml.gz",
+   "status": "ok",
+   "entries": 2662
+  },
+  {
+   "stage": "sitemap",
+   "url": "https://cdn.wasalt.sa/sitemap/rental_srp_sitemap_en_sa.xml.gz",
+   "status": "ok",
+   "entries": 5054
+  },
+  {
+   "stage": "sitemap",
+   "url": "https://cdn.wasalt.sa/sitemap/static_sitemap_en_sa.xml.gz",
+   "status": "ok",
+   "entries": 9
+  },
+  {
+   "stage": "sitemap",
+   "url": "https://darglobal.co.uk/sitemap.xml",
+   "status": "ok",
+   "entries": 482
+  }
+ ]
+}

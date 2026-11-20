@@ -1,0 +1,10 @@
+# Allowlist: only what the runtime image needs. .env, .venv, raw scrape cache, tests and the
+# scraper never enter the build context, so secrets cannot leak into an image layer.
+*
+!app/
+!data/corpus.jsonl
+!data/manifest.json
+!data/trap_report.json
+!requirements.txt
+**/__pycache__
+**/*.pyc

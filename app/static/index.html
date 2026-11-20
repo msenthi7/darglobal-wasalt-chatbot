@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DarGlobal &amp; Wasalt Assistant</title>
+  <meta name="description" content="A chatbot that answers from public DarGlobal and Wasalt data, with sources and capture dates. Independent technical assignment.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f766e'/%3E%3Cpath d='M9 23V12l7-4 7 4v11h-5v-6h-4v6z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8"/><path d="M9 23V12l7-4 7 4v11h-5v-6h-4v6z"/></svg>
+        <div>
+          <h1>DarGlobal &amp; Wasalt Assistant</h1>
+          <p class="sub">Answers from public pages, with sources and capture dates</p>
+        </div>
+      </div>
+      <button id="new-chat" class="ghost" type="button">New chat</button>
+    </header>
+
+    <p id="status" class="status" aria-live="polite">Loading data summary…</p>
+
+    <main id="log" class="log" aria-live="polite" aria-label="Conversation">
+      <section id="empty" class="empty">
+        <h2>Ask about DarGlobal projects or Wasalt listings</h2>
+        <p>Every answer cites the pages it used. Prices, statuses and counts come from dated snapshots, so check the capture date.</p>
+        <div class="chips">
+          <button type="button" class="chip">Which DarGlobal projects are in Dubai?</button>
+          <button type="button" class="chip">Tell me about Trump Tower Jeddah</button>
+          <button type="button" class="chip">What amenities do the Trump Golf Villas in Oman have?</button>
+          <button type="button" class="chip">How many apartments for sale are listed on Wasalt?</button>
+          <button type="button" class="chip">Which Jeddah districts does Wasalt cover?</button>
+          <button type="button" class="chip" dir="rtl" lang="ar">ما هي مشاريع دار جلوبال في عُمان؟</button>
+        </div>
+      </section>
+    </main>
+
+    <form id="composer" class="composer" autocomplete="off">
+      <label for="input" class="sr-only">Your question</label>
+      <textarea id="input" rows="1" maxlength="1000" placeholder="Ask in English or Arabic…" dir="auto" required></textarea>
+      <div class="composer-row">
+        <span id="count" class="count" aria-live="off">0 / 1000</span>
+        <button id="send" type="submit" class="send">Send</button>
+      </div>
+    </form>
+
+    <footer class="foot">
+      <p>Independent technical assignment, not affiliated with or endorsed by DarGlobal or Wasalt. Answers come from public pages captured on the dates shown and may be out of date. Questions are sent to a free third-party model through OpenRouter, so please don't include personal information.</p>
+      <details id="how">
+        <summary>How this works</summary>
+        <div id="how-body"><p>Loading…</p></div>
+      </details>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Least privilege: tests and the image smoke test get read-only access and no secrets.
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
+        with:
+          python-version: "3.13"
+      - name: Install hash-locked dependencies
+        run: pip install --require-hashes --no-deps -r requirements.txt -r requirements-scraper.txt -r requirements-dev.txt
+      - name: Unit, integration and API tests (OpenRouter mocked)
+        run: python -m pytest
+
+  docker:
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build image
+        run: docker build -t dgw-assistant:ci .
+      - name: Smoke test the container (no API key on purpose)
+        run: |
+          set -euo pipefail
+          docker run -d --name app -p 7860:7860 dgw-assistant:ci
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:7860/healthz > /tmp/health.json && break; sleep 2; done
+          python3 -c "import json; d=json.load(open('/tmp/health.json')); assert d['documents'] > 0, d; print(d)"
+          code=$(curl -s -o /tmp/chat.json -w '%{http_code}' -X POST -H 'content-type: application/json' \
+            -d '{"message":"Tell me about Trump Tower Jeddah"}' http://127.0.0.1:7860/api/chat)
+          cat /tmp/chat.json; echo
+          test "$code" = 503 && grep -q '"not_configured"' /tmp/chat.json
+          test "$(docker exec app id -u)" = 1000
+      - name: Container logs
+        if: always()
+        run: docker logs app 2>&1 | tail -40 || true
