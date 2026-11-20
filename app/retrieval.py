@@ -171,7 +171,7 @@ _STOP_RAW = set(
     "what which who whom whose when where why how do does did can could would should will shall may might "
     "i me my we our you your he she they them their there here about tell show give list please any some "
     "has have had not no yes also than then so if into over under more most much many very just".split()
-) | set("في من على الى إلى عن مع هذا هذه ذلك التي الذي ما هل او أو ثم كل".split())
+) | set("في من على الى إلى عن مع هذا هذه ذلك التي الذي ما هل او أو ثم كل هو هي ماذا لماذا كيف متى أين".split())
 _STOP = {normalize(w) for w in _STOP_RAW}  # same normalisation as tokens, so "على" (-> "علي") is matched
 SYNONYMS: dict[str, tuple[str, ...]] = {
     "uae": ("dubai", "emirate"), "emirate": ("uae",), "ksa": ("saudi",), "saudi": ("ksa",),
@@ -285,9 +285,13 @@ class BM25Index:
         boost_site = ("wasalt" if ("wasalt" in q or "وصلت" in q) and "darglobal" not in q.replace(" ", "")
                       else "darglobal" if ("darglobal" in q.replace(" ", "") or "دار جلوبال" in q) else None)
         if boost_site:
-            for i in scores:
-                if self.chunks[i].doc.site == boost_site:
-                    scores[i] *= 1.3
+            # The question names one site, so rank only that site's pages and pages that mention it by name.
+            # A score boost was not enough: an Arabic question about DarGlobal in Jeddah ranked Wasalt's
+            # Arabic Jeddah listings first (DarGlobal's pages are in English).
+            mentions = {i for i, _tf in self.postings.get(boost_site, ())}
+            scoped = {i: s for i, s in scores.items() if self.chunks[i].doc.site == boost_site or i in mentions}
+            if scoped:
+                scores = scoped
         if not scores:
             return []
         ranked = sorted(scores.items(), key=lambda kv: (-kv[1], self.chunks[kv[0]].chunk_id))

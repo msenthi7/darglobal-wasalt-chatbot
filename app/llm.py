@@ -119,6 +119,7 @@ class OpenRouterClient:
         self.budget, self.client_budget = upstream_budget, client_budget
         self._clock, self._sleep, self._rng = clock, sleep, rng
         self._sem = asyncio.Semaphore(settings.max_concurrent_upstream)
+        self._preferred: str | None = None  # model that answered last; tried first next time
 
     def redact(self, text: str) -> str:
         if self.s.openrouter_api_key:
@@ -133,10 +134,16 @@ class OpenRouterClient:
         if not models:
             raise LLMError("no_model_available", "No free model is currently available. Please try again later.",
                            retryable=True, http_status=503)
+        primary = models[0]
+        if self._preferred in models[1:]:
+            # A congested free endpoint answers 429 for minutes at a time. Starting with the model that
+            # answered last saves two calls of the daily free-request quota on every later question.
+            models.remove(self._preferred)
+            models.insert(0, self._preferred)
         deadline = self._clock() + self.s.total_deadline_s
         attempts = 0
         last_reason = "unknown"
-        for index, model in enumerate(models):
+        for model in models:
             for attempt in range(1, self.s.max_attempts_per_model + 1):
                 if attempts >= self.s.max_total_attempts:
                     break
@@ -166,7 +173,9 @@ class OpenRouterClient:
                     break
                 log.info(json.dumps({"event": "llm_ok", "request_id": request_id, "model": used, "attempts": attempts,
                                      "latency_ms": int((self._clock() - started) * 1000), "truncated": truncated}))
-                return LLMResult(text=text, model=used, attempts=attempts, fallback_used=index > 0, truncated=truncated)
+                self._preferred = model
+                return LLMResult(text=text, model=used, attempts=attempts, fallback_used=model != primary,
+                                 truncated=truncated)
             if attempts >= self.s.max_total_attempts:
                 break
         log.warning(json.dumps({"event": "llm_exhausted", "request_id": request_id, "attempts": attempts,

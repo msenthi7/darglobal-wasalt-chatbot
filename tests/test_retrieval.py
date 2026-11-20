@@ -86,3 +86,17 @@ def test_count_questions_prefer_inventory_documents():
              "Districts with properties-for-sale search pages: Al Rawdah, Al Safa. Search page types: apartments for sale."),
     ])
     assert idx.search("How many apartments for sale are listed on Wasalt?")[0].chunk.doc.doc_id == "wasalt:inv"
+
+
+def test_question_naming_one_site_is_answered_from_that_site():
+    idx = build_index([
+        _doc("darglobal:1", "Trump Tower Jeddah", "Trump Tower Jeddah by DarGlobal: seafront apartments in Jeddah."),
+        _doc("darglobal:2", "DarGlobal partners with Wasalt",
+             "DarGlobal partners with Wasalt to advertise Trump Tower Jeddah in the Kingdom."),
+        _doc("wasalt:3", "عقار جدة | عقارات للبيع في جدة",
+             "عقارات للبيع في جدة. شقق للبيع في جدة. فلل للبيع في جدة. مشاريع جدة. دار في جدة."),
+    ])
+    arabic = [h.chunk.doc.doc_id for h in idx.search("ما هي مشاريع دار جلوبال في جدة؟")]
+    assert "darglobal:1" in arabic and "wasalt:3" not in arabic  # was: Wasalt's Arabic listings ranked first
+    on_wasalt = [h.chunk.doc.doc_id for h in idx.search("Is Trump Tower Jeddah advertised on Wasalt?")]
+    assert on_wasalt[0] == "darglobal:2"  # another site's page that names Wasalt still counts

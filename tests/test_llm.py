@@ -102,3 +102,30 @@ def test_redaction_removes_configured_key_and_key_shapes():
     client = OpenRouterClient(Settings(openrouter_api_key=KEY), httpx.AsyncClient(), ModelRegistry(("a/one:free",)))
     text = client.redact(f"Authorization: Bearer {KEY} failed; other sk-or-v1-abcdefabcdef0000")
     assert KEY not in text and "sk-or-v1" not in text and "[REDACTED]" in text
+
+
+def test_model_that_answered_last_is_tried_first_next_time():
+    replies = iter([httpx.Response(429), httpx.Response(429), ok("first", model="b/two:free"),
+                    ok("second", model="b/two:free")])
+    calls: list[str] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path.endswith("/models"):
+            return httpx.Response(200, json=LISTING)
+        calls.append(json.loads(request.content)["model"])
+        return next(replies)
+
+    async def go():
+        settings = Settings(openrouter_api_key=KEY, models=("a/one:free", "b/two:free"))
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as http:
+            registry = ModelRegistry(settings.models)
+            await registry.refresh(http, settings.openrouter_base_url)
+            client = OpenRouterClient(settings, http, registry, sleep=lambda s: asyncio.sleep(0))
+            first = await client.complete([{"role": "user", "content": "q1"}], request_id="t1")
+            second = await client.complete([{"role": "user", "content": "q2"}], request_id="t2")
+            return first, second
+
+    first, second = asyncio.run(go())
+    # The congested primary costs two calls once; the next question goes straight to the model that answered.
+    assert calls == ["a/one:free", "a/one:free", "b/two:free", "b/two:free"]
+    assert second.attempts == 1 and first.fallback_used and second.fallback_used  # still disclosed as a fallback

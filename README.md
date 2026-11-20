@@ -44,7 +44,7 @@ A retrieval-augmented chatbot that answers questions about DarGlobal's real-esta
 ```
 
 - **Scraper** (`scraper/`): discovers pages from each site's sitemaps, fetches content, extracts visible text plus structured project facts from DarGlobal's page data (status, unit sizes, completion date, amenities, location), derives Wasalt coverage and inventory documents from its sitemaps, scans everything for AI traps, and writes a versioned corpus with a manifest of every request and outcome.
-- **App** (`app/`): loads and re-validates the corpus, builds a bilingual BM25 index, retrieves the best passages for each question, asks a free model to answer only from those passages with numbered citations, then checks every citation against the sources it actually sent.
+- **App** (`app/`): loads and re-validates the corpus, builds a bilingual BM25 index, retrieves the best passages for each question (from that site's pages when a question names DarGlobal or Wasalt), asks a free model to answer only from those passages with numbered citations, then checks every citation against the sources it actually sent.
 
 ## Data collection
 
@@ -75,7 +75,7 @@ At answer time, retrieved text is fenced as untrusted data (fence tags inside it
 ## Reliability and security controls
 
 - **Free models only.** Configured models are checked against OpenRouter's public pricing at startup and every 6 hours; anything not $0 or no longer listed is dropped. Each answer shows which model replied and whether a fallback was used.
-- **One retry policy.** Timeouts, 429s and 5xx responses retry with backoff and jitter, then fall back to the next free model: at most 3 model calls per question, all inside a 75-second deadline that is re-checked after waiting for a free slot. Authentication errors stop immediately, and there are no hidden SDK retries.
+- **One retry policy.** Timeouts, 429s and 5xx responses retry with backoff and jitter, then fall back to the next free model: at most 3 model calls per question, all inside a 75-second deadline that is re-checked after waiting for a free slot. Authentication errors stop immediately, and there are no hidden SDK retries. The model that answered last is tried first next time, so a busy model costs the extra calls once rather than on every question.
 - **Quotas before model calls.** Per-visitor limits (6 questions/min, 20/day, and at most 15 model calls/day, so one visitor cannot use up the shared allowance), a global 15/min limit, and a daily cap of 45 upstream calls (under OpenRouter's free tier of 20/min and 50/day without credits). Quota is spent only on real model calls, and questions with no matching sources are answered without one.
 - **Truthful results.** Errors carry a stable code, a safe message, a retryable flag and a request ID. Raw exceptions, upstream messages and the API key never reach the client, and the key is redacted from logs. Answers without citations are labelled as such.
 - **Input validation.** Strict schema (message up to 1,000 characters, up to 12 history turns, user/assistant roles only, unknown fields rejected) and a 32 KB body cap; the UI trims earlier turns to fit, so long Arabic conversations keep working.
@@ -126,7 +126,7 @@ Rebuild the corpus (about 25 minutes, mostly polite request spacing; reruns reus
 .venv/bin/python -m pytest
 ```
 
-86 tests, with OpenRouter mocked so no network is needed. They cover trap detection (including Arabic and Unicode tag smuggling) and quarantine, URL-allowlist bypass attempts, robots wildcards, bot-challenge handling, redirect scope, retries and `Retry-After`, size caps, XML entity bombs, corpus integrity, retrieval determinism, rate limits, model fallback and the auth stop, the daily budget, key redaction, citation validation, API error envelopes and spoofed `X-Forwarded-For` headers. CI runs the suite plus a container smoke test on every push.
+88 tests, with OpenRouter mocked so no network is needed. They cover trap detection (including Arabic and Unicode tag smuggling) and quarantine, URL-allowlist bypass attempts, robots wildcards, bot-challenge handling, redirect scope, retries and `Retry-After`, size caps, XML entity bombs, corpus integrity, retrieval determinism, rate limits, model fallback and the auth stop, the daily budget, key redaction, citation validation, API error envelopes and spoofed `X-Forwarded-For` headers. CI runs the suite plus a container smoke test on every push.
 
 ## Limitations
 
@@ -138,10 +138,11 @@ Rebuild the corpus (about 25 minutes, mostly polite request spacing; reruns reus
 
 ## Verification status
 
-- **Automated tests:** 86 unit, integration and API tests pass with OpenRouter mocked. Mutation checks confirmed that the trap-regex and file-permission regression tests fail without their fixes.
+- **Automated tests:** 88 unit, integration and API tests pass with OpenRouter mocked. Mutation checks confirmed that the trap-regex, file-permission, model-preference and site-scoping regression tests fail without their fixes.
 - **Independent review:** a separate reviewer found 15 issues (none high-severity), including a page-title route around the trap filter, quota exhaustion by one visitor, and robots.txt gaps for archived copies. All 15 are fixed; 13 have automated regression tests, the access-log change was confirmed in the container's logs (no IP addresses), and the UI history trimming was checked by code inspection.
-- **Container:** image built and smoke-tested locally (linux/arm64): runs as UID 1000, serves the UI, answers `/healthz`, and returns a typed `503 not_configured` when no key is set. CI repeats the build and smoke test on linux/amd64.
+- **Live model answers:** four questions run locally with the real key. DarGlobal's Dubai projects and Wasalt's rental count were answered with correct citations, a prompt-injection attempt was ignored (only its London question was answered), and an Arabic question about DarGlobal in Jeddah exposed a retrieval bug (next item). The primary model was rate-limited upstream, so answers came from the first fallback.
+- **Found by live testing, now fixed:** the Arabic Jeddah question retrieved Wasalt's Arabic listings instead of DarGlobal's pages, and the rate-limited primary cost three model calls per question. Questions that name a site are now answered from that site's pages, and the model that answered last is tried first; both fixes have regression tests.
+- **Container:** image built and smoke-tested locally (linux/arm64): runs as UID 1000, serves the UI, answers `/healthz`, and returns a typed `503 not_configured` when no key is set. CI repeats the build and smoke test on linux/amd64 for every push.
 - **UI:** checked in a browser at desktop and phone width, in light and dark themes, with no console errors under the CSP.
 - **Retrieval:** 12 representative English and Arabic questions spot-checked; each retrieves the expected source first.
-- **Live model answers:** not yet verified in this revision (pending the deployed API key).
 - **Not done:** load testing, multi-instance deployment, systematic answer-accuracy evaluation.
