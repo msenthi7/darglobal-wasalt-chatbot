@@ -1,17 +1,6 @@
----
-title: DarGlobal & Wasalt Assistant
-emoji: 🏙️
-colorFrom: green
-colorTo: blue
-sdk: docker
-app_port: 7860
-pinned: false
-short_description: Cited chatbot over public DarGlobal & Wasalt data
----
-
 # DarGlobal & Wasalt Assistant
 
-**Live demo:** being deployed on Hugging Face Spaces (link added on deploy) · **Source:** https://github.com/msenthi7/darglobal-wasalt-chatbot
+**Live demo:** being deployed on Render (link added on deploy) · **Source:** https://github.com/msenthi7/darglobal-wasalt-chatbot
 
 A retrieval-augmented chatbot that answers questions about DarGlobal's real-estate projects and Wasalt's Saudi property listings. It uses only publicly available data, cites the exact pages behind each answer with their capture dates, runs on a free OpenRouter model, and ships as a Docker container.
 
@@ -99,6 +88,8 @@ Without Docker (Python 3.13):
 python -m venv .venv && .venv/bin/pip install --require-hashes --no-deps -r requirements.txt
 HOST=127.0.0.1 OPENROUTER_API_KEY=... .venv/bin/python -m app
 ```
+
+Deploy: `render.yaml` describes a free Docker web service on Render. Open [render.com/deploy?repo=https://github.com/msenthi7/darglobal-wasalt-chatbot](https://render.com/deploy?repo=https://github.com/msenthi7/darglobal-wasalt-chatbot), paste an OpenRouter key when asked (Render stores it as a secret; it is never in the repo), and Render builds the same Dockerfile. Free instances sleep after 15 idle minutes, so the first request after a pause can take up to a minute.
 
 Rebuild the corpus (about 25 minutes, mostly polite request spacing; reruns reuse the local archive cache):
 

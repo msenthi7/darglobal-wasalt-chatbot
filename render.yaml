@@ -1,0 +1,16 @@
+# Render Blueprint: a free Docker web service built from this repo's Dockerfile.
+# One-click deploy: https://render.com/deploy?repo=https://github.com/msenthi7/darglobal-wasalt-chatbot
+services:
+  - type: web
+    name: darglobal-wasalt-chatbot
+    runtime: docker
+    plan: free
+    region: frankfurt
+    healthCheckPath: /healthz
+    envVars:
+      - key: OPENROUTER_API_KEY
+        sync: false # Render asks for it at deploy time and stores it as a secret; never committed
+      - key: PORT
+        value: "7860" # matches the Dockerfile's EXPOSE and HEALTHCHECK
+      - key: SOURCE_URL
+        value: https://github.com/msenthi7/darglobal-wasalt-chatbot

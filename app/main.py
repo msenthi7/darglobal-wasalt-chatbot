@@ -36,7 +36,7 @@ STATIC = Path(__file__).parent / "static"
 MAX_BODY_BYTES = 32 * 1024
 CSP = ("default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; "
        "font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; "
-       "frame-ancestors 'self' https://huggingface.co https://*.hf.space")
+       "frame-ancestors 'self'")
 SECURITY_HEADERS = {
     "Content-Security-Policy": CSP,
     "X-Content-Type-Options": "nosniff",
